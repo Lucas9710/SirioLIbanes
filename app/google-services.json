@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "872141928763",
+    "firebase_url": "https://salon-sirio-libanes.firebaseio.com",
+    "project_id": "salon-sirio-libanes",
+    "storage_bucket": "salon-sirio-libanes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872141928763:android:ad4b0b6bfbc5ee05",
+        "android_client_info": {
+          "package_name": "remindme.android.com.sirioibanes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872141928763-po1nr9vcgpeeo6vnm6sgcq81ctg4ej2l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "remindme.android.com.sirioibanes",
+            "certificate_hash": "97150f2562ba7a1bb9e7747c25d2d473628e1a96"
+          }
+        },
+        {
+          "client_id": "872141928763-latc8a73vmm4jrvb85hi406lqld7l0am.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9pyQmevXm_K-9KTkdDrdudn38vZic76o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872141928763-14bkinjnavf60b2612536427c0g3vj0s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.federicobf.siriolibanes"
+              }
+            },
+            {
+              "client_id": "872141928763-latc8a73vmm4jrvb85hi406lqld7l0am.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
