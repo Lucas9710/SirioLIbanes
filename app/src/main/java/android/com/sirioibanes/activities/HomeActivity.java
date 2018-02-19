@@ -1,5 +1,10 @@
 package android.com.sirioibanes.activities;
 
+import android.com.sirioibanes.R;
+import android.com.sirioibanes.adapters.EventsAdapter;
+import android.com.sirioibanes.dtos.Event;
+import android.com.sirioibanes.presenters.HomePresenter;
+import android.com.sirioibanes.views.HomeView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,17 +13,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import java.util.AbstractMap;
 import java.util.List;
-
-import android.com.sirioibanes.R;
-import android.com.sirioibanes.adapters.EventsAdapter;
-import android.com.sirioibanes.dtos.Event;
-import android.com.sirioibanes.presenters.HomePresenter;
-import android.com.sirioibanes.views.HomeView;
 
 public class HomeActivity extends AbstractActivity implements HomeView, EventsAdapter.EventClickListener {
 

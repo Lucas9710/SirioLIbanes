@@ -12,7 +12,7 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,28 +128,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/hintEmail" />
+                android:text="Cómo llegar" />
 
             <Button
                 style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/hintEmail" />
+                android:text="Redes sociales" />
 
             <Button
                 style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/hintEmail" />
-
-            <Button
-                style="@style/AppTheme.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/hintEmail" />
+                android:text="Ranking musical" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:text="No asistir" />
+                    android:text="No asistiré" />
 
                 <Button
                     style="@style/AppTheme.Button"
@@ -172,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:text="No asistir" />
+                    android:text="Quizás" />
 
                 <Button
                     style="@style/AppTheme.Button"
@@ -180,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:text="No asistir" />
+                    android:text="Asistiré" />
             </LinearLayout>
         </LinearLayout>
     </ViewFlipper>

@@ -6,4 +6,6 @@ import java.util.AbstractMap;
 
 public interface ScannerView {
     void showEvent(@NonNull AbstractMap<String, Object> event);
+
+    void onInvalidEvent();
 }

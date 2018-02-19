@@ -1,5 +1,7 @@
 package android.com.sirioibanes.presenters;
 
+import android.com.sirioibanes.database.DBConstants;
+import android.com.sirioibanes.views.ScannerView;
 import android.support.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -8,10 +10,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.Normalizer;
 import java.util.AbstractMap;
-
-import android.com.sirioibanes.database.DBConstants;
-import android.com.sirioibanes.views.ScannerView;
 
 public class ScannerPresenter {
 
@@ -25,14 +25,19 @@ public class ScannerPresenter {
     }
 
     public void getEvent(@NonNull final String code) {
+
         final DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference(DBConstants.TABLE_EVENTS).child(code);
+                .getReference(DBConstants.TABLE_EVENTS).child(getNormalizedCode(code));
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
                 final AbstractMap<String, Object> event = (AbstractMap<String, Object>) dataSnapshot.getValue();
-                mView.showEvent(event);
+                if (event == null) {
+                    mView.onInvalidEvent();
+                } else {
+                    mView.showEvent(event);
+                }
             }
 
             @Override
@@ -40,5 +45,11 @@ public class ScannerPresenter {
 
             }
         });
+
+    }
+
+    private String getNormalizedCode(final String code) {
+        return Normalizer.normalize(code, Normalizer.Form.NFD)
+                .replaceAll("[^a-zA-Z]", "");
     }
 }

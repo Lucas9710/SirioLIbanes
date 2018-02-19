@@ -23,8 +23,7 @@
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.ScannerActivity" />
-        <activity android:name=".activities.EventActivity" />
-        <activity android:name=".activities.DeeplinkHandlerActivity">
+        <activity android:name=".activities.EventActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -32,12 +31,17 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="www.eventossiriolibanes.com/"
-                    android:path="/app"
-                    android:scheme="https://" />
+                    android:host="www.eventossiriolibanes.com"
+                    android:pathPrefix="/app/index.html"
+                    android:scheme="http" />
 
                 <data
-                    android:host="l.ead.me/"
+                    android:host="www.eventossiriolibanes.com"
+                    android:pathPrefix="/app/index.html"
+                    android:scheme="https" />
+
+                <data
+                    android:host="l.ead.me"
                     android:path="/barGy7"
                     android:scheme="http://" />
             </intent-filter>
