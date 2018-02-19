@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.AbstractMap;
+import java.util.HashMap;
 
 import remindme.android.com.sirioibanes.database.DBConstants;
 import remindme.android.com.sirioibanes.dtos.User;
@@ -53,6 +54,7 @@ public class AuthenticationManager {
                 for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     final AbstractMap<String, Object> user = (AbstractMap<String, Object>) snapshot.getValue();
                     if ((user.get("email")).equals(email)) {
+
                         mUser = new User((String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
                                 (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
 
@@ -75,7 +77,11 @@ public class AuthenticationManager {
 
     public User getUser(@NonNull final Context context) {
         if (mUser == null) {
-            mUser = SharedPreferencesUtils.getInstance(context).read(PREF_USER, User.class);
+            final HashMap<String, Object> user = SharedPreferencesUtils.getInstance(context)
+                    .read(PREF_USER, HashMap.class);
+            mUser = new User((String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
+                    (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
+
             onLogin(context, mUser.getEmail(), null);
         }
 

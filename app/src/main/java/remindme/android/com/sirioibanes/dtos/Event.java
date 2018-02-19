@@ -1,8 +1,15 @@
 package remindme.android.com.sirioibanes.dtos;
 
+import java.util.AbstractMap;
 import java.util.HashMap;
 
 public class Event extends HashMap<String, Object> {
+
+    public Event(AbstractMap<String, Object> eventObject) {
+        for (final String key : eventObject.keySet()) {
+            put(key, eventObject.get(key));
+        }
+    }
 
     public String getTitle() {
         return (String) get("titulo");

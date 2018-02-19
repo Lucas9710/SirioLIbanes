@@ -68,6 +68,7 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/buttonScanner"
         style="@style/AppTheme.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

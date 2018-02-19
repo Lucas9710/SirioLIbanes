@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="remindme.android.com.sirioibanes">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activities.SplitterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +22,26 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.ScannerActivity" />
+        <activity android:name=".activities.EventActivity" />
+        <activity android:name=".activities.DeeplinkHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.eventossiriolibanes.com/"
+                    android:path="/app"
+                    android:scheme="https://" />
+
+                <data
+                    android:host="l.ead.me/"
+                    android:path="/barGy7"
+                    android:scheme="http://" />
+            </intent-filter>
+        </activity>
 
 
     </application>

@@ -22,9 +22,7 @@ public class HomePresenter {
     private final DatabaseReference myRef;
 
     public HomePresenter() {
-        // TODO: SQL Query condition
         myRef = FirebaseDatabase.getInstance().getReference(DBConstants.TABLE_EVENTS);
-
         getEvents();
     }
 

@@ -24,7 +24,7 @@ class SharedPreferencesUtils {
         return mInstance;
     }
 
-    public void save(final String key, final User value) {
+    public <T> void save(final String key, final T value) {
         mPrefs.edit().putString(key, new Gson().toJson(value)).apply();
     }
 
