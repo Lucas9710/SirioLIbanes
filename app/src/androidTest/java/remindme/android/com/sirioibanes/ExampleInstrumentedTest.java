@@ -1,4 +1,4 @@
-package remindme.android.com.sirioibanes;
+package android.com.sirioibanes;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("remindme.android.com.sirioibanes", appContext.getPackageName());
+        assertEquals("android.com.sirioibanes", appContext.getPackageName());
     }
 }

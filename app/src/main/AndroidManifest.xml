@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="remindme.android.com.sirioibanes">
+    package="android.com.sirioibanes">
 
     <uses-permission android:name="android.permission.CAMERA" />
 

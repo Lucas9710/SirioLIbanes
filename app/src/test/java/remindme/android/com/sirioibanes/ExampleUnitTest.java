@@ -1,4 +1,4 @@
-package remindme.android.com.sirioibanes;
+package android.com.sirioibanes;
 
 import org.junit.Test;
 
