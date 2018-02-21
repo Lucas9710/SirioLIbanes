@@ -1,5 +1,7 @@
 package android.com.sirioibanes.utils;
 
+import android.com.sirioibanes.database.DBConstants;
+import android.com.sirioibanes.dtos.User;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,10 +16,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.AbstractMap;
 import java.util.HashMap;
 
-import android.com.sirioibanes.database.DBConstants;
-import android.com.sirioibanes.dtos.User;
-
 public class AuthenticationManager {
+
+    public void associateEvent(final Context context, final String eventKey) {
+        getUser(context).getEvents().put(eventKey, true);
+    }
 
     public interface LoginListener {
         void onLogin(@NonNull User user);
@@ -55,7 +58,7 @@ public class AuthenticationManager {
                     final AbstractMap<String, Object> user = (AbstractMap<String, Object>) snapshot.getValue();
                     if ((user.get("email")).equals(email)) {
 
-                        mUser = new User((String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
+                        mUser = new User(snapshot.getKey(), (String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
                                 (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
 
                         SharedPreferencesUtils.getInstance(context).save(PREF_USER, mUser);
@@ -79,8 +82,9 @@ public class AuthenticationManager {
         if (mUser == null) {
             final HashMap<String, Object> user = SharedPreferencesUtils.getInstance(context)
                     .read(PREF_USER, HashMap.class);
-            mUser = new User((String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
-                    (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
+            mUser = new User((String) user.get("id"), (String) user.get("nombre"), (String) user.get("nickname"),
+                    (String) user.get("email"), (String) user.get("telefono"),
+                    (AbstractMap<String, Boolean>) user.get("eventos"));
 
             onLogin(context, mUser.getEmail(), null);
         }

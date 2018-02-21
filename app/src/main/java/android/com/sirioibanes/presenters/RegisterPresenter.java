@@ -52,7 +52,7 @@ public class RegisterPresenter {
                                     .replace("-", "").replace("_", "")
                                     + new Random().nextInt(999);
 
-                            final User user = new User(name, nickName, email, phone, null);
+                            final User user = new User(task.getResult().getUser().getUid(), name, nickName, email, phone, null);
                             myRef.push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull final Task<Void> task) {

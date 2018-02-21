@@ -46,6 +46,8 @@
                     android:scheme="http://" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.SocialNetworksActivity" />
+        <activity android:name=".activities.MusicActivity" />
 
 
     </application>

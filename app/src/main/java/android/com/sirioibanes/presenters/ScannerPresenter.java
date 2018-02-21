@@ -1,9 +1,13 @@
 package android.com.sirioibanes.presenters;
 
 import android.com.sirioibanes.database.DBConstants;
+import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.ScannerView;
 import android.support.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +41,7 @@ public class ScannerPresenter {
                     mView.onInvalidEvent();
                 } else {
                     mView.showEvent(event);
+                    associateEvent(code);
                 }
             }
 
@@ -46,6 +51,25 @@ public class ScannerPresenter {
             }
         });
 
+    }
+
+    private void associateEvent(@NonNull final String eventKey) {
+        final DatabaseReference userTableRef = FirebaseDatabase.getInstance()
+                .getReference(DBConstants.TABLE_USERS).child(AuthenticationManager
+                        .getInstance().getUser(mView.getContext()).getId());
+
+        userTableRef.child("eventos").child(eventKey).setValue(true)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull final Task<Void> task) {
+                        AuthenticationManager.getInstance().associateEvent(mView.getContext(), eventKey);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull final Exception e) {
+                mView.onEventAssociationError();
+            }
+        });
     }
 
     private String getNormalizedCode(final String code) {

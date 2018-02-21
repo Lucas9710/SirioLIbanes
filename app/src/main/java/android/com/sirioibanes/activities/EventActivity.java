@@ -3,13 +3,17 @@ package android.com.sirioibanes.activities;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.presenters.EventPresenter;
+import android.com.sirioibanes.utils.IntentUtils;
 import android.com.sirioibanes.views.EventView;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.squareup.picasso.Callback;
@@ -90,8 +94,38 @@ public class EventActivity extends AbstractActivity implements EventView {
 
                     @Override
                     public void onError() {
-                        // TODO: What?
+                        Toast.makeText(EventActivity.this, "No hemos podido cargar los datos del evento.",
+                                Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 });
+
+        findViewById(R.id.buttonMap).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                final Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getAddress()));
+                if (IntentUtils.isActivityAvailable(EventActivity.this, mapIntent)) {
+                    startActivity(mapIntent);
+                } else {
+                    Toast.makeText(EventActivity.this, "La dirección del evento es inválida",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        findViewById(R.id.buttonSocialNetworks).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                final Intent intent = new Intent(EventActivity.this, SocialNetworksActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.buttonMusic).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                startActivity(new Intent(EventActivity.this, MusicActivity.class));
+            }
+        });
     }
 }

@@ -17,8 +17,6 @@
             android:layout_gravity="top"
             android:orientation="vertical">
 
-            <include layout="@layout/home_header" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

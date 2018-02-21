@@ -1,5 +1,8 @@
 package android.com.sirioibanes.presenters;
 
+import android.com.sirioibanes.database.DBConstants;
+import android.com.sirioibanes.utils.AuthenticationManager;
+import android.com.sirioibanes.views.HomeView;
 import android.support.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -12,10 +15,6 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.com.sirioibanes.database.DBConstants;
-import android.com.sirioibanes.utils.AuthenticationManager;
-import android.com.sirioibanes.views.HomeView;
-
 public class HomePresenter {
 
     private HomeView mView;
@@ -23,7 +22,6 @@ public class HomePresenter {
 
     public HomePresenter() {
         myRef = FirebaseDatabase.getInstance().getReference(DBConstants.TABLE_EVENTS);
-        getEvents();
     }
 
     private void getEvents() {
@@ -35,10 +33,11 @@ public class HomePresenter {
 
                 for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     final AbstractMap<String, Object> event = (AbstractMap<String, Object>) postSnapshot.getValue();
-                    if (((AbstractMap<String, Object>) event.get("invitados"))
-                            .containsKey(AuthenticationManager.getInstance()
-                                    .getUser(mView.getContext()).getNickName()))
-                    events.add(event);
+                    if (AuthenticationManager.getInstance().getUser(mView.getContext())
+                            .getEvents().containsKey(postSnapshot.getKey())
+                            && AuthenticationManager.getInstance().getUser(mView.getContext())
+                            .getEvents().get(postSnapshot.getKey()))
+                        events.add(event);
                 }
 
                 if (events.isEmpty()) {
@@ -58,10 +57,7 @@ public class HomePresenter {
     }
 
     public void onAttachView(@NonNull final HomeView view) {
-        if (mView == null) {
-            getEvents();
-        }
-
+        getEvents();
         mView = view;
     }
 }

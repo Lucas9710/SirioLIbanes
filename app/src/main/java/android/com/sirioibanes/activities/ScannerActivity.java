@@ -4,6 +4,7 @@ import android.com.sirioibanes.R;
 import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.presenters.ScannerPresenter;
 import android.com.sirioibanes.views.ScannerView;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
+import com.google.zxing.common.StringUtils;
 
 import java.util.AbstractMap;
 
@@ -43,8 +45,14 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
         findViewById(R.id.buttonScan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                mPresenter.getEvent(((AppCompatEditText) findViewById(R.id.fieldCode))
-                        .getText().toString().trim());
+                final String key = ((AppCompatEditText) findViewById(R.id.fieldCode))
+                        .getText().toString().trim();
+
+                if (key.isEmpty()) {
+                    onInvalidEvent();
+                } else {
+                    mPresenter.getEvent(key);
+                }
             }
         });
     }
@@ -93,5 +101,16 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
         Toast.makeText(ScannerActivity.this, "El código de evento es inválido",
                 Toast.LENGTH_LONG).show();
         mScannerView.resumeCameraPreview(this);
+    }
+
+    @Override
+    public Context getContext() {
+        return ScannerActivity.this;
+    }
+
+    @Override
+    public void onEventAssociationError() {
+        Toast.makeText(ScannerActivity.this, "No hemos podido asociarte al evento",
+                Toast.LENGTH_LONG).show();
     }
 }

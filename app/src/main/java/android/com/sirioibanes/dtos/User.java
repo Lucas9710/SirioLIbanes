@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.AbstractMap;
 
 public class User implements Parcelable {
+    private String id;
+
     @SerializedName("email")
     private String email;
 
@@ -24,13 +26,15 @@ public class User implements Parcelable {
     @SerializedName("eventos")
     private AbstractMap<String, Boolean> events;
 
-    public User(@NonNull final String name, @NonNull final String nickName, @NonNull final String email,
-                @NonNull final String phone, @NonNull final AbstractMap<String, Boolean> events) {
+    public User(@NonNull final String id, @NonNull final String name, @NonNull final String nickName,
+                @NonNull final String email, @NonNull final String phone,
+                @NonNull final AbstractMap<String, Boolean> events) {
         this.name = name;
         this.nickName = nickName;
         this.email = email;
         this.phone = phone;
         this.events = events;
+        this.id = id;
     }
 
     public User() {
@@ -87,5 +91,9 @@ public class User implements Parcelable {
         dest.writeString(nickName);
         dest.writeString(phone);
         dest.writeString(name);
+    }
+
+    public String getId() {
+        return id;
     }
 }
