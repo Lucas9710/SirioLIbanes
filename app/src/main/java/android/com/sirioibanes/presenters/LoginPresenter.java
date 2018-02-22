@@ -26,6 +26,8 @@ public class LoginPresenter {
             return;
         }
 
+        mView.showProgress();
+
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

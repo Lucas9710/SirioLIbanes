@@ -58,7 +58,7 @@ public class AuthenticationManager {
                     final AbstractMap<String, Object> user = (AbstractMap<String, Object>) snapshot.getValue();
                     if ((user.get("email")).equals(email)) {
 
-                        mUser = new User(snapshot.getKey(), (String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
+                        mUser = new User((String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
                                 (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
 
                         SharedPreferencesUtils.getInstance(context).save(PREF_USER, mUser);
@@ -77,12 +77,21 @@ public class AuthenticationManager {
         });
     }
 
+    public void logout(@NonNull final Context context) {
+        FirebaseAuth.getInstance().signOut();
+        SharedPreferencesUtils.getInstance(context).save(PREF_USER, null);
+    }
+
+    public void recoverPassword(@NonNull final String email) {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email);
+    }
+
 
     public User getUser(@NonNull final Context context) {
         if (mUser == null) {
             final HashMap<String, Object> user = SharedPreferencesUtils.getInstance(context)
                     .read(PREF_USER, HashMap.class);
-            mUser = new User((String) user.get("id"), (String) user.get("nombre"), (String) user.get("nickname"),
+            mUser = new User((String) user.get("nombre"), (String) user.get("nickname"),
                     (String) user.get("email"), (String) user.get("telefono"),
                     (AbstractMap<String, Boolean>) user.get("eventos"));
 

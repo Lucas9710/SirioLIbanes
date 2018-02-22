@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SirioIbanes</string>
+    <string name="app_name">Eventos Sirio Libanés</string>
     <string name="button_register">Registrarse</string>
     <string name="hintPassword">Contraseña</string>
     <string name="hintEmail">Mail</string>

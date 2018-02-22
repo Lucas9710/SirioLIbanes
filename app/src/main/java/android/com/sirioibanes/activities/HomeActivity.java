@@ -4,6 +4,7 @@ import android.com.sirioibanes.R;
 import android.com.sirioibanes.adapters.EventsAdapter;
 import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.presenters.HomePresenter;
+import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.HomeView;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,16 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
             @Override
             public void onClick(final View v) {
                 startActivity(new Intent(HomeActivity.this, ScannerActivity.class));
+            }
+        });
+
+        findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                AuthenticationManager.getInstance().logout(HomeActivity.this);
+                startActivity(new Intent(HomeActivity.this, SplitterActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             }
         });
     }

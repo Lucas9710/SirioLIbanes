@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,9 +56,10 @@ public class ScannerPresenter {
     }
 
     private void associateEvent(@NonNull final String eventKey) {
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         final DatabaseReference userTableRef = FirebaseDatabase.getInstance()
-                .getReference(DBConstants.TABLE_USERS).child(AuthenticationManager
-                        .getInstance().getUser(mView.getContext()).getId());
+                .getReference(DBConstants.TABLE_USERS).child(user.getUid());
 
         userTableRef.child("eventos").child(eventKey).setValue(true)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

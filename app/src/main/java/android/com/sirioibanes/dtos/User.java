@@ -9,13 +9,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.AbstractMap;
 
 public class User implements Parcelable {
-    private String id;
-
     @SerializedName("email")
     private String email;
 
     @SerializedName("nickname")
-    private String nickName;
+    private String nickname;
 
     @SerializedName("telefono")
     private String phone;
@@ -26,15 +24,14 @@ public class User implements Parcelable {
     @SerializedName("eventos")
     private AbstractMap<String, Boolean> events;
 
-    public User(@NonNull final String id, @NonNull final String name, @NonNull final String nickName,
+    public User(@NonNull final String name, @NonNull final String nickName,
                 @NonNull final String email, @NonNull final String phone,
                 @NonNull final AbstractMap<String, Boolean> events) {
         this.name = name;
-        this.nickName = nickName;
+        this.nickname = nickName;
         this.email = email;
         this.phone = phone;
         this.events = events;
-        this.id = id;
     }
 
     public User() {
@@ -43,9 +40,10 @@ public class User implements Parcelable {
 
     protected User(final Parcel in) {
         email = in.readString();
-        nickName = in.readString();
+        nickname = in.readString();
         phone = in.readString();
         name = in.readString();
+        in.readMap(events, Boolean.class.getClassLoader());
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -64,8 +62,8 @@ public class User implements Parcelable {
         return email;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
     public String getPhone() {
@@ -88,12 +86,9 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeString(email);
-        dest.writeString(nickName);
+        dest.writeString(nickname);
         dest.writeString(phone);
         dest.writeString(name);
-    }
-
-    public String getId() {
-        return id;
+        dest.writeMap(events);
     }
 }

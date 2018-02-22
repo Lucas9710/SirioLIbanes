@@ -10,4 +10,6 @@ public interface LoginView {
     void onLoginError();
 
     Context getContext();
+
+    void showProgress();
 }

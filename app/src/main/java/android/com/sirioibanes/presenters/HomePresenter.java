@@ -33,8 +33,10 @@ public class HomePresenter {
 
                 for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     final AbstractMap<String, Object> event = (AbstractMap<String, Object>) postSnapshot.getValue();
-                    if (AuthenticationManager.getInstance().getUser(mView.getContext())
-                            .getEvents().containsKey(postSnapshot.getKey())
+                    final AbstractMap<String, Boolean> userEvents = AuthenticationManager.getInstance()
+                            .getUser(mView.getContext()).getEvents();
+
+                    if (userEvents != null && userEvents.containsKey(postSnapshot.getKey())
                             && AuthenticationManager.getInstance().getUser(mView.getContext())
                             .getEvents().get(postSnapshot.getKey()))
                         events.add(event);

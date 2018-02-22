@@ -1,23 +1,24 @@
 package android.com.sirioibanes.activities;
 
+import android.Manifest;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.presenters.ScannerPresenter;
 import android.com.sirioibanes.views.ScannerView;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
-import com.google.zxing.common.StringUtils;
 
 import java.util.AbstractMap;
 
@@ -27,6 +28,7 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
         ScannerView {
 
     private static final String PARAM_EVENT = "evento";
+    private static final int CAMERA_REQUEST_CODE = 100;
     private ZXingScannerView mScannerView;
     private ScannerPresenter mPresenter;
 
@@ -55,6 +57,20 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
                 }
             }
         });
+
+        if (ContextCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            mScannerView.startCamera();
+        }
     }
 
     @Override
