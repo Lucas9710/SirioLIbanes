@@ -16,7 +16,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ViewFlipper;
 
-import java.util.AbstractMap;
 import java.util.List;
 
 public class HomeActivity extends AbstractActivity implements HomeView, EventsAdapter.EventClickListener {
@@ -76,7 +75,7 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
     }
 
     @Override
-    public void showEvents(@NonNull final List<AbstractMap<String, Object>> events) {
+    public void showEvents(@NonNull final List<Event> events) {
         setState(STATE_LIST);
         mEventsAdapter.setItems(events);
     }

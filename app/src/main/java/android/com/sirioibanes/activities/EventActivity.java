@@ -3,24 +3,30 @@ package android.com.sirioibanes.activities;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.presenters.EventPresenter;
-import android.com.sirioibanes.utils.ErrorUtils;
+import android.com.sirioibanes.utils.FeedbackUtils;
 import android.com.sirioibanes.utils.IntentUtils;
 import android.com.sirioibanes.views.EventView;
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.DateInterval;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.util.AbstractMap;
+import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
 
 public class EventActivity extends AbstractActivity implements EventView {
     private static final String EXTRA_EVENT = "event";
@@ -51,8 +57,7 @@ public class EventActivity extends AbstractActivity implements EventView {
 
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(EXTRA_EVENT)) {
 
-            mEvent = new Event((AbstractMap<String, Object>) getIntent()
-                    .getExtras().get(EXTRA_EVENT));
+            mEvent = (Event) getIntent().getExtras().getSerializable(EXTRA_EVENT);
 
             mPresenter = new EventPresenter(mEvent);
 
@@ -74,8 +79,8 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     @Override
-    public void showEvent(@NonNull final AbstractMap<String, Object> event) {
-        render(new Event(event));
+    public void showEvent(@NonNull final Event event) {
+        render(event);
     }
 
     @Override
@@ -84,23 +89,33 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     @Override
-    public void onAssistanceConfirmed(@NonNull String status) {
+    public void onAssistanceConfirmed(@Nullable String status) {
+        if (status == null || status.isEmpty()) {
+            return;
+        }
+
         switch (status) {
             case EventPresenter.ASSISTANCE_CONFIRM:
-                findViewById(R.id.buttonAssistConfirm).setBackgroundColor(getContext().getResources().getColor(R.color.green));
+                findViewById(R.id.buttonAssistConfirm).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_green));
+                findViewById(R.id.buttonAssistMaybe).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button));
+                findViewById(R.id.buttonAssistNegative).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button));
                 break;
             case EventPresenter.ASSISTANCE_MAYBE:
-                findViewById(R.id.buttonAssistMaybe).setBackgroundColor(getContext().getResources().getColor(R.color.amber));
+                findViewById(R.id.buttonAssistMaybe).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_amber));
+                findViewById(R.id.buttonAssistConfirm).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button));
+                findViewById(R.id.buttonAssistNegative).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button));
                 break;
             case EventPresenter.ASSISTANCE_NEGATIVE:
-                findViewById(R.id.buttonAssistNegative).setBackgroundColor(getContext().getResources().getColor(R.color.red));
+                findViewById(R.id.buttonAssistNegative).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button_red));
+                findViewById(R.id.buttonAssistConfirm).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button));
+                findViewById(R.id.buttonAssistMaybe).setBackgroundDrawable(getResources().getDrawable(R.drawable.background_button));
                 break;
         }
     }
 
     @Override
     public void onAssistanceError() {
-        ErrorUtils.displaySnackbarError(findViewById(R.id.rootView), "¡Ups! Algo ha salido mal. Vuelve a intentarlo");
+        FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView), "¡Ups! Algo ha salido mal. Vuelve a intentarlo");
     }
 
     @Override
@@ -120,7 +135,9 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     private void render(final Event event) {
-        Picasso.with(EventActivity.this).load(event.getPicture())
+        initCountDown(event.timestamp);
+
+        Picasso.with(EventActivity.this).load(event.foto)
                 .into((ImageView) findViewById(R.id.eventPicture), new Callback() {
                     @Override
                     public void onSuccess() {
@@ -138,7 +155,7 @@ public class EventActivity extends AbstractActivity implements EventView {
         findViewById(R.id.buttonMap).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                final Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.getAddress()));
+                final Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(event.lugar));
                 if (IntentUtils.isActivityAvailable(EventActivity.this, mapIntent)) {
                     startActivity(mapIntent);
                 } else {
@@ -152,7 +169,8 @@ public class EventActivity extends AbstractActivity implements EventView {
             @Override
             public void onClick(final View v) {
                 final Intent intent = SocialNetworksActivity.getIntent(EventActivity.this,
-                        event.getSocialNetworks());
+                        event.redes);
+
                 startActivity(intent);
             }
         });
@@ -184,5 +202,9 @@ public class EventActivity extends AbstractActivity implements EventView {
                 mPresenter.confirmAssistance(EventPresenter.ASSISTANCE_MAYBE);
             }
         });
+    }
+
+    private void initCountDown(final Long timeStamp) {
+       // TODO : Counter
     }
 }

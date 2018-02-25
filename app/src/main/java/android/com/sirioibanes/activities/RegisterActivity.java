@@ -4,13 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.presenters.RegisterPresenter;
-import android.com.sirioibanes.utils.ErrorUtils;
+import android.com.sirioibanes.utils.FeedbackUtils;
 import android.com.sirioibanes.views.RegisterView;
 import android.widget.ViewFlipper;
 
@@ -66,7 +65,7 @@ public class RegisterActivity extends AbstractActivity implements RegisterView {
     @Override
     public void onRegisterError() {
         mViewFlipper.setDisplayedChild(STATE_REGULAR);
-        ErrorUtils.displaySnackbarError(findViewById(R.id.rootView),
+        FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView),
                 getString(R.string.error_message_signup));
     }
 
@@ -79,7 +78,7 @@ public class RegisterActivity extends AbstractActivity implements RegisterView {
 
     @Override
     public void onEmptyError() {
-        ErrorUtils.displaySnackbarError(findViewById(R.id.rootView),
+        FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView),
                 getString(R.string.error_message_empty_fields));
     }
 

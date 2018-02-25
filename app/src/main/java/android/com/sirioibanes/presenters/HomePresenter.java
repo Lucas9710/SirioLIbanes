@@ -41,7 +41,7 @@ public class HomePresenter {
                         if (userEvents != null && userEvents.containsKey(postSnapshot.getKey())
                                 && AuthenticationManager.getInstance().getUser(mView.getContext())
                                 .getEventos().get(postSnapshot.getKey()))
-                            events.add(new Event(code, event));
+                            events.add(new Event(postSnapshot.getKey(), event));
                     }
 
                     if (events.isEmpty()) {

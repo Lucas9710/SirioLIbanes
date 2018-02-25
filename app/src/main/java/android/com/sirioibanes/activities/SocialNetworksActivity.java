@@ -2,6 +2,8 @@ package android.com.sirioibanes.activities;
 
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.dtos.SocialNetwork;
+import android.com.sirioibanes.utils.FeedbackUtils;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -48,8 +50,7 @@ public class SocialNetworksActivity extends AbstractActivity {
                     fbButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse(socialNetwork.get("link"))));
+                            handleLink(socialNetwork.get("link"));
                         }
                     });
 
@@ -63,8 +64,7 @@ public class SocialNetworksActivity extends AbstractActivity {
                     twButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse(socialNetwork.get("link"))));
+                            handleLink(socialNetwork.get("link"));
                         }
                     });
 
@@ -78,8 +78,7 @@ public class SocialNetworksActivity extends AbstractActivity {
                     instButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse(socialNetwork.get("link"))));
+                            handleLink(socialNetwork.get("link"));
                         }
                     });
 
@@ -87,6 +86,14 @@ public class SocialNetworksActivity extends AbstractActivity {
                     instagramView.setText(socialNetwork.get("name"));
                     break;
             }
+        }
+    }
+
+    private void handleLink(final String link) {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(link)));
+        } catch (ActivityNotFoundException e) {
+            FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView), "El link es inválido");
         }
     }
 

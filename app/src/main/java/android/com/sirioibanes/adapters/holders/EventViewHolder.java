@@ -20,8 +20,8 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
         descriptionView = itemView.findViewById(R.id.description);
     }
 
-    public void onBind(@NonNull final AbstractMap<String, Object> event) {
-        titleView.setText((String) event.get("titulo"));
-        descriptionView.setText((String) event.get("descripcion"));
+    public void onBind(@NonNull final Event event) {
+        titleView.setText(event.titulo);
+        descriptionView.setText(event.descripcion);
     }
 }

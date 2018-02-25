@@ -9,7 +9,7 @@ import java.util.List;
 import android.com.sirioibanes.dtos.Event;
 
 public interface HomeView {
-    void showEvents(@NonNull List<AbstractMap<String, Object>> events);
+    void showEvents(@NonNull List<Event> events);
 
     void showEmptyView();
 

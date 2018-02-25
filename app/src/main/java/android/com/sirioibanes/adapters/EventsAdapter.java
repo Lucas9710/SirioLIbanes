@@ -17,7 +17,7 @@ import android.com.sirioibanes.dtos.Event;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
 
-    private final List<AbstractMap<String, Object>> events = new ArrayList<>();
+    private final List<Event> events = new ArrayList<>();
     private EventClickListener mListener;
 
     public EventsAdapter(@NonNull final EventClickListener clickListener) {
@@ -42,8 +42,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                final AbstractMap<String, Object> eventObject = events.get(holder.getAdapterPosition());
-                final Event event = new Event(eventObject);
+                final Event event = events.get(holder.getAdapterPosition());
 
                 mListener.onClick(event);
             }
@@ -55,7 +54,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventViewHolder> {
         return events.size();
     }
 
-    public void setItems(@NonNull final List<AbstractMap<String, Object>> items) {
+    public void setItems(@NonNull final List<Event> items) {
         this.events.clear();
         this.events.addAll(items);
 

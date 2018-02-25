@@ -5,9 +5,9 @@ import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.EventView;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,14 +25,16 @@ public class EventPresenter {
     private final String mEventKey;
     private EventView mView;
     private final DatabaseReference myRef;
+    private Event mEvent;
 
     public EventPresenter(@NonNull final String eventKey) {
         myRef = FirebaseDatabase.getInstance().getReference(DBConstants.TABLE_EVENTS);
         mEventKey = eventKey;
     }
 
-    public EventPresenter(Event event) {
-        mEventKey = event.get
+    public EventPresenter(final Event event) {
+        this(event.key);
+        mEvent = event;
     }
 
     private void getEvents(final String eventKey) {
@@ -43,9 +45,12 @@ public class EventPresenter {
 
                 if (mView != null) {
                     for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        final AbstractMap<String, Object> event = (AbstractMap<String, Object>) postSnapshot.getValue();
+                        final Event event = new Event(postSnapshot.getKey(),
+                                (AbstractMap<String, Object>) postSnapshot.getValue());
+
                         if (postSnapshot.getKey().equalsIgnoreCase(eventKey)) {
                             mView.showEvent(event);
+                            mView.onAssistanceConfirmed(getAssistanceStatus(event));
                         }
                     }
                 }
@@ -62,26 +67,34 @@ public class EventPresenter {
     }
 
     public void confirmAssistance(@NonNull final String status) {
-        myRef.child(mEventKey).push().setValue(AuthenticationManager.getInstance()
-                .getUser(mView.getContext()).getNickname(), status).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                mView.onAssistanceConfirmed(status);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        myRef.child(mEventKey).child("invitados").child(AuthenticationManager.getInstance()
+                .getUser(mView.getContext()).getNickname()).setValue(status)
+                .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 mView.onAssistanceError();
             }
         });
+
+        mView.onAssistanceConfirmed(status);
     }
 
     public void onAttachView(@NonNull final EventView view) {
-        if (mEventKey != null) {
+        mView = view;
+
+        if (mEvent == null && mEventKey != null) {
             getEvents(mEventKey);
         }
 
-        mView = view;
+        if (mEvent != null) {
+            mView.onAssistanceConfirmed(getAssistanceStatus(mEvent));
+        }
+    }
+
+    @Nullable
+    private String getAssistanceStatus(final Event event) {
+        return event.invitados.get(AuthenticationManager.getInstance()
+                .getUser(mView.getContext()).getNickname());
     }
 
     public void detachView() {

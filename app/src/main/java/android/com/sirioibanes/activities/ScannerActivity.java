@@ -108,8 +108,8 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
     }
 
     @Override
-    public void showEvent(@NonNull final AbstractMap<String, Object> event) {
-        startActivity(EventActivity.getIntent(ScannerActivity.this, new Event(event)));
+    public void showEvent(@NonNull final Event event) {
+        startActivity(EventActivity.getIntent(ScannerActivity.this, event));
     }
 
     @Override

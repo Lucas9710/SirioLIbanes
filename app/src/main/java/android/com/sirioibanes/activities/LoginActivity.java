@@ -3,7 +3,7 @@ package android.com.sirioibanes.activities;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.presenters.LoginPresenter;
 import android.com.sirioibanes.utils.AuthenticationManager;
-import android.com.sirioibanes.utils.ErrorUtils;
+import android.com.sirioibanes.utils.FeedbackUtils;
 import android.com.sirioibanes.views.LoginView;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +37,7 @@ public class LoginActivity extends AbstractActivity implements LoginView {
             @Override
             public void onClick(final View v) {
                 if (emailView.getText().toString().isEmpty()) {
-                    ErrorUtils.displaySnackbarError(findViewById(R.id.rootView),
+                    FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView),
                              "Completa tu email y vuelve a intentarlo");
                 } else {
                     AuthenticationManager.getInstance().recoverPassword(emailView.getText().toString());
@@ -65,7 +65,7 @@ public class LoginActivity extends AbstractActivity implements LoginView {
 
     @Override
     public void onEmptyFields() {
-        ErrorUtils.displaySnackbarError(findViewById(R.id.rootView),
+        FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView),
                 getString(R.string.error_message_empty_fields));
     }
 
@@ -79,7 +79,7 @@ public class LoginActivity extends AbstractActivity implements LoginView {
     @Override
     public void onLoginError() {
         showRegularLayout();
-        ErrorUtils.displaySnackbarError(findViewById(R.id.rootView),
+        FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView),
                 getString(R.string.error_message_login));
     }
 

@@ -1,6 +1,7 @@
 package android.com.sirioibanes.presenters;
 
 import android.com.sirioibanes.database.DBConstants;
+import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.ScannerView;
 import android.support.annotation.NonNull;
@@ -42,7 +43,7 @@ public class ScannerPresenter {
                 if (event == null) {
                     mView.onInvalidEvent();
                 } else {
-                    mView.showEvent(event);
+                    mView.showEvent(new Event(code, event));
                     associateEvent(code);
                 }
             }
