@@ -23,10 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:padding="16dp"
+            android:padding="8dp"
             android:text="Si es la primera vez que ingresas a la App debes registrarte con un usuario nuevo"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/buttonRegister"

@@ -175,6 +175,15 @@ public class EventActivity extends AbstractActivity implements EventView {
             }
         });
 
+        findViewById(R.id.buttonAssignment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                final Intent intent = new Intent(EventActivity.this, AssignmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         findViewById(R.id.buttonMusic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
