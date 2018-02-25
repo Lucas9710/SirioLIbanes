@@ -65,6 +65,12 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.detachView();
+    }
+
+    @Override
     protected boolean shouldValidate() {
         return true;
     }

@@ -15,19 +15,21 @@ import android.widget.ViewFlipper;
 
 public class LoginActivity extends AbstractActivity implements LoginView {
 
+    private LoginPresenter mPresenter;
+
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final LoginPresenter presenter = new LoginPresenter(this);
+        mPresenter = new LoginPresenter(this);
         final AppCompatEditText emailView = findViewById(R.id.fieldEmail);
         final AppCompatEditText passwordView = findViewById(R.id.fieldPassword);
 
         findViewById(R.id.buttonLogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                presenter.login(emailView.getText().toString(), passwordView.getText().toString());
+                mPresenter.login(emailView.getText().toString(), passwordView.getText().toString());
             }
         });
 
@@ -42,6 +44,18 @@ public class LoginActivity extends AbstractActivity implements LoginView {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.attachView(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.detachView();
     }
 
     @Override

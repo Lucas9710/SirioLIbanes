@@ -1,11 +1,13 @@
 package android.com.sirioibanes.dtos;
 
+import android.support.annotation.NonNull;
+
 import java.util.AbstractMap;
 import java.util.HashMap;
 
 public class Event extends HashMap<String, Object> {
 
-    public Event(AbstractMap<String, Object> eventObject) {
+    public Event(@NonNull final String key AbstractMap<String, Object> eventObject) {
         for (final String key : eventObject.keySet()) {
             put(key, eventObject.get(key));
         }
@@ -39,7 +41,7 @@ public class Event extends HashMap<String, Object> {
         return (String) get("timestamp");
     }
 
-    public SocialNetwork getSocialNetworks() {
-        return (SocialNetwork) get("redes");
+    public HashMap getSocialNetworks() {
+        return (HashMap) get("redes");
     }
 }

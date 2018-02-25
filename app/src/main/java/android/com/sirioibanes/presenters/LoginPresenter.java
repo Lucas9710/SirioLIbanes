@@ -1,5 +1,8 @@
 package android.com.sirioibanes.presenters;
 
+import android.com.sirioibanes.dtos.User;
+import android.com.sirioibanes.utils.AuthenticationManager;
+import android.com.sirioibanes.views.LoginView;
 import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -8,13 +11,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import android.com.sirioibanes.dtos.User;
-import android.com.sirioibanes.utils.AuthenticationManager;
-import android.com.sirioibanes.views.LoginView;
-
 public class LoginPresenter {
 
-    private final LoginView mView;
+    private LoginView mView;
 
     public LoginPresenter(@NonNull final LoginView view) {
         mView = view;
@@ -32,6 +31,10 @@ public class LoginPresenter {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull final Task<AuthResult> task) {
+                if (mView == null) {
+                    return;
+                }
+
                 if (task.isSuccessful()) {
                     AuthenticationManager.getInstance().onLogin(mView.getContext(), email,
                             new AuthenticationManager.LoginListener() {
@@ -50,5 +53,13 @@ public class LoginPresenter {
                 mView.onLoginError();
             }
         });
+    }
+
+    public void attachView(LoginView view) {
+        mView = view;
+    }
+
+    public void detachView() {
+        mView = null;
     }
 }

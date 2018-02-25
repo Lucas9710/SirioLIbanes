@@ -56,20 +56,33 @@ public class ScannerPresenter {
     }
 
     private void associateEvent(@NonNull final String eventKey) {
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         final DatabaseReference userTableRef = FirebaseDatabase.getInstance()
-                .getReference(DBConstants.TABLE_USERS).child(user.getUid());
+                .getReference(DBConstants.TABLE_USERS);
 
-        userTableRef.child("eventos").child(eventKey).setValue(true)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull final Task<Void> task) {
-                        AuthenticationManager.getInstance().associateEvent(mView.getContext(), eventKey);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        userTableRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onFailure(@NonNull final Exception e) {
+            public void onDataChange(final DataSnapshot database) {
+                for (DataSnapshot snapshot : database.getChildren()) {
+                    if (snapshot.child("nickname").getValue().equals(AuthenticationManager.getInstance()
+                            .getUser(mView.getContext()).getNickname())) {
+                        userTableRef.child(snapshot.getKey()).child("eventos").child(eventKey).setValue(true)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull final Task<Void> task) {
+                                        AuthenticationManager.getInstance().associateEvent(mView.getContext(), eventKey);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull final Exception e) {
+                                mView.onEventAssociationError();
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(final DatabaseError databaseError) {
                 mView.onEventAssociationError();
             }
         });

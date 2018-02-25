@@ -14,4 +14,5 @@
     <string name="empty_events_title">No tienes eventos cargados</string>
     <string name="empty_events_message">Cuando accedas a un evento aquí encontrarás el listado de todos los eventos a los que fuiste invitado</string>
     <string name="home_button">Acceder a un evento</string>
+    <string name="hintLastName">Apellido</string>
 </resources>

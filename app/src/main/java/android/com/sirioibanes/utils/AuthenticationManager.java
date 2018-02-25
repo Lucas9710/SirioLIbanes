@@ -19,7 +19,15 @@ import java.util.HashMap;
 public class AuthenticationManager {
 
     public void associateEvent(final Context context, final String eventKey) {
-        getUser(context).getEvents().put(eventKey, true);
+        AbstractMap<String, Boolean> events = getUser(context).getEventos();
+
+        if (events == null) {
+            events = new HashMap<>();
+            getUser(context).setEventos(events);
+        }
+
+        getUser(context).getEventos().put(eventKey, true);
+        onRegister(context, getUser(context));
     }
 
     public interface LoginListener {
@@ -58,7 +66,7 @@ public class AuthenticationManager {
                     final AbstractMap<String, Object> user = (AbstractMap<String, Object>) snapshot.getValue();
                     if ((user.get("email")).equals(email)) {
 
-                        mUser = new User((String) user.get("nombre"), (String) user.get("nickname"), (String) user.get("email"),
+                        mUser = new User((String) user.get("nombre"), (String) user.get("apellido"), (String) user.get("nickname"), (String) user.get("email"),
                                 (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
 
                         SharedPreferencesUtils.getInstance(context).save(PREF_USER, mUser);
@@ -91,7 +99,7 @@ public class AuthenticationManager {
         if (mUser == null) {
             final HashMap<String, Object> user = SharedPreferencesUtils.getInstance(context)
                     .read(PREF_USER, HashMap.class);
-            mUser = new User((String) user.get("nombre"), (String) user.get("nickname"),
+            mUser = new User((String) user.get("nombre"), (String) user.get("apellido"), (String) user.get("nickname"),
                     (String) user.get("email"), (String) user.get("telefono"),
                     (AbstractMap<String, Boolean>) user.get("eventos"));
 
@@ -101,7 +109,8 @@ public class AuthenticationManager {
         return mUser;
     }
 
-    public void onRegister(@NonNull final User user) {
+    public void onRegister(@NonNull final Context context, @NonNull final User user) {
         mUser = user;
+        SharedPreferencesUtils.getInstance(context).save(PREF_USER, mUser);
     }
 }

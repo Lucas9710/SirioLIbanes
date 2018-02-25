@@ -1,6 +1,7 @@
 package android.com.sirioibanes.presenters;
 
 import android.com.sirioibanes.database.DBConstants;
+import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.HomeView;
 import android.support.annotation.NonNull;
@@ -29,23 +30,25 @@ public class HomePresenter {
             @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                final List<AbstractMap<String, Object>> events = new ArrayList<>();
+                if (mView != null) {
+                    final List<Event> events = new ArrayList<>();
 
-                for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    final AbstractMap<String, Object> event = (AbstractMap<String, Object>) postSnapshot.getValue();
-                    final AbstractMap<String, Boolean> userEvents = AuthenticationManager.getInstance()
-                            .getUser(mView.getContext()).getEvents();
+                    for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        final AbstractMap<String, Object> event = (AbstractMap<String, Object>) postSnapshot.getValue();
+                        final AbstractMap<String, Boolean> userEvents = AuthenticationManager.getInstance()
+                                .getUser(mView.getContext()).getEventos();
 
-                    if (userEvents != null && userEvents.containsKey(postSnapshot.getKey())
-                            && AuthenticationManager.getInstance().getUser(mView.getContext())
-                            .getEvents().get(postSnapshot.getKey()))
-                        events.add(event);
-                }
+                        if (userEvents != null && userEvents.containsKey(postSnapshot.getKey())
+                                && AuthenticationManager.getInstance().getUser(mView.getContext())
+                                .getEventos().get(postSnapshot.getKey()))
+                            events.add(new Event(code, event));
+                    }
 
-                if (events.isEmpty()) {
-                    mView.showEmptyView();
-                } else {
-                    mView.showEvents(events);
+                    if (events.isEmpty()) {
+                        mView.showEmptyView();
+                    } else {
+                        mView.showEvents(events);
+                    }
                 }
             }
 
@@ -61,5 +64,9 @@ public class HomePresenter {
     public void onAttachView(@NonNull final HomeView view) {
         getEvents();
         mView = view;
+    }
+
+    public void detachView() {
+        mView = null;
     }
 }

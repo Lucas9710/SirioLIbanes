@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.com.sirioibanes.utils.AuthenticationManager;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+
 public abstract class AbstractActivity extends AppCompatActivity {
 
     @CallSuper

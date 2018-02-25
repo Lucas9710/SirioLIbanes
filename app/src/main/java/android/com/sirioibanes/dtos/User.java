@@ -4,34 +4,25 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.AbstractMap;
 
 public class User implements Parcelable {
-    @SerializedName("email")
     private String email;
-
-    @SerializedName("nickname")
     private String nickname;
+    private String telefono;
+    private String nombre;
+    private String apellido;
+    private AbstractMap<String, Boolean> eventos;
 
-    @SerializedName("telefono")
-    private String phone;
-
-    @SerializedName("nombre")
-    private String name;
-
-    @SerializedName("eventos")
-    private AbstractMap<String, Boolean> events;
-
-    public User(@NonNull final String name, @NonNull final String nickName,
-                @NonNull final String email, @NonNull final String phone,
-                @NonNull final AbstractMap<String, Boolean> events) {
-        this.name = name;
+    public User(@NonNull final String nombre, @NonNull final String apellido, @NonNull final String nickName,
+                @NonNull final String email, @NonNull final String telefono,
+                @NonNull final AbstractMap<String, Boolean> eventos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.nickname = nickName;
         this.email = email;
-        this.phone = phone;
-        this.events = events;
+        this.telefono = telefono;
+        this.eventos = eventos;
     }
 
     public User() {
@@ -41,9 +32,10 @@ public class User implements Parcelable {
     protected User(final Parcel in) {
         email = in.readString();
         nickname = in.readString();
-        phone = in.readString();
-        name = in.readString();
-        in.readMap(events, Boolean.class.getClassLoader());
+        telefono = in.readString();
+        nombre = in.readString();
+        apellido = in.readString();
+        in.readMap(eventos, Boolean.class.getClassLoader());
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -66,16 +58,20 @@ public class User implements Parcelable {
         return nickname;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public AbstractMap<String, Boolean> getEvents() {
-        return events;
+    public String getApellido() {
+        return apellido;
+    }
+
+    public AbstractMap<String, Boolean> getEventos() {
+        return eventos;
     }
 
     @Override
@@ -87,8 +83,13 @@ public class User implements Parcelable {
     public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeString(email);
         dest.writeString(nickname);
-        dest.writeString(phone);
-        dest.writeString(name);
-        dest.writeMap(events);
+        dest.writeString(telefono);
+        dest.writeString(nombre);
+        dest.writeString(apellido);
+        dest.writeMap(eventos);
+    }
+
+    public void setEventos(AbstractMap<String, Boolean> eventos) {
+        this.eventos = eventos;
     }
 }
