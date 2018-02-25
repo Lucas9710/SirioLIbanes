@@ -128,32 +128,52 @@
                 android:id="@+id/buttonMap"
                 style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="16dp"
+                android:radius="20dp"
+                android:textSize="14sp"
                 android:text="Cómo llegar" />
 
             <Button
                 android:id="@+id/buttonSocialNetworks"
                 style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:radius="20dp"
+                android:textSize="14sp"
                 android:text="Redes sociales" />
 
             <Button
                 android:id="@+id/buttonMusic"
                 style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:radius="20dp"
+                android:textSize="14sp"
                 android:text="Ranking musical" />
 
             <Button
                 android:id="@+id/buttonAssignment"
                 style="@style/AppTheme.Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:radius="20dp"
+                android:textSize="14sp"
                 android:text="Mi mesa" />
 
             <LinearLayout
@@ -167,27 +187,30 @@
                     android:id="@+id/buttonAssistNegative"
                     style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:textSize="14sp"
                     android:text="No asistiré" />
 
                 <Button
                     android:id="@+id/buttonAssistMaybe"
                     style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:textSize="14sp"
                     android:text="Quizás" />
 
                 <Button
                     android:id="@+id/buttonAssistConfirm"
                     style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:textSize="14sp"
                     android:text="Asistiré" />
             </LinearLayout>
         </LinearLayout>
