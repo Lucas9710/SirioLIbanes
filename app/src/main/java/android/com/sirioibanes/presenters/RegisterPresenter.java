@@ -60,7 +60,7 @@ public class RegisterPresenter {
                                     + new Random().nextInt(999);
 
                             final User user = new User(name, lastName, nickName, email, phone, null);
-                            myRef.push().setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            myRef.child(FirebaseAuth.getInstance().getUid()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     mView.onRegisterSuccess();
