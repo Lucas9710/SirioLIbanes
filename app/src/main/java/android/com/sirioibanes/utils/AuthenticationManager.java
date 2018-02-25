@@ -62,19 +62,17 @@ public class AuthenticationManager {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    final AbstractMap<String, Object> user = (AbstractMap<String, Object>) snapshot.getValue();
-                    if ((user.get("email")).equals(email)) {
+                final AbstractMap<String, Object> user = (AbstractMap<String, Object>) dataSnapshot
+                        .child(FirebaseAuth.getInstance().getUid()).getValue();
 
-                        mUser = new User((String) user.get("nombre"), (String) user.get("apellido"), (String) user.get("nickname"), (String) user.get("email"),
-                                (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
+                mUser = new User((String) user.get("nombre"), (String) user.get("apellido"),
+                        (String) user.get("nickname"), (String) user.get("email"),
+                        (String) user.get("telefono"), (AbstractMap<String, Boolean>) user.get("eventos"));
 
-                        SharedPreferencesUtils.getInstance(context).save(PREF_USER, mUser);
+                SharedPreferencesUtils.getInstance(context).save(PREF_USER, mUser);
 
-                        if (listener != null) {
-                            listener.onLogin(mUser);
-                        }
-                    }
+                if (listener != null) {
+                    listener.onLogin(mUser);
                 }
             }
 
