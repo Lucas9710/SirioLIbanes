@@ -93,6 +93,10 @@ public class EventPresenter {
 
     @Nullable
     private String getAssistanceStatus(final Event event) {
+        if (event.invitados == null) {
+            return null;
+        }
+
         return event.invitados.get(AuthenticationManager.getInstance()
                 .getUser(mView.getContext()).getNickname());
     }

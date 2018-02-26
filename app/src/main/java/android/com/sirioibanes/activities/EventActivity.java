@@ -8,13 +8,11 @@ import android.com.sirioibanes.utils.IntentUtils;
 import android.com.sirioibanes.views.EventView;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.DateInterval;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,9 +22,9 @@ import android.widget.ViewFlipper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class EventActivity extends AbstractActivity implements EventView {
     private static final String EXTRA_EVENT = "event";
@@ -170,7 +168,6 @@ public class EventActivity extends AbstractActivity implements EventView {
             public void onClick(final View v) {
                 final Intent intent = SocialNetworksActivity.getIntent(EventActivity.this,
                         event.redes);
-
                 startActivity(intent);
             }
         });
@@ -187,7 +184,7 @@ public class EventActivity extends AbstractActivity implements EventView {
         findViewById(R.id.buttonMusic).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                startActivity(new Intent(EventActivity.this, MusicActivity.class));
+                startActivity(MusicActivity.getIntent(EventActivity.this, event));
             }
         });
 
@@ -214,6 +211,21 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     private void initCountDown(final Long timeStamp) {
-       // TODO : Counter
+        final Long currentTime = Calendar.getInstance(TimeZone.getDefault()).getTimeInMillis();
+        final Long milisInFuture = new Date(timeStamp).getTime() - currentTime;
+        final TextView counterDaysNumber = findViewById(R.id.counterDaysNumber);
+        final TextView counterHoursNumber = findViewById(R.id.counterHoursNumber);
+        final TextView counterMinutesNumber = findViewById(R.id.counterMinutesNumber);
+
+        new CountDownTimer(3000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                // TODO: Hacer contador
+            }
+
+            public void onFinish() {
+                // Nothing to do
+            }
+        }.start();
     }
 }
