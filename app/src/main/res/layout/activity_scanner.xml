@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:text="Clave del evento"
                 android:textColor="@color/white"
@@ -38,9 +38,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="8dp"
+                android:textSize="14sp"
                 android:text="Escanea el código QR que te mandaron por email o ingresa la clave manualmente"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                />
 
             <me.dm7.barcodescanner.zxing.ZXingScannerView
                 android:id="@+id/scannerView"
@@ -48,13 +49,26 @@
                 android:layout_height="250dp"
                 android:layout_gravity="center" />
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/fieldCode"
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="left"
+                android:text="Código de evento"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/fieldCode"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
                 android:background="@android:drawable/editbox_background_normal"
-                android:hint="Código de evento"
+                android:hint=""
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
