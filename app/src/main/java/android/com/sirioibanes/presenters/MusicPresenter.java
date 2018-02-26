@@ -13,6 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,7 +24,7 @@ public class MusicPresenter {
     private final DatabaseReference mRef;
     private final String mEventKey;
     private MusicView mView;
-    private final ArrayList<Song> mSongs= new ArrayList<>();
+    private ArrayList<Song> mSongs= new ArrayList<>();
 
     public MusicPresenter(@NonNull final String eventKey) {
         mEventKey = eventKey;
@@ -46,10 +49,19 @@ public class MusicPresenter {
 
                 mSongs.clear();
 
+
+
                 for (int i = 0; i < list.size(); i++) {
                     final Song song = new Song(list.get(i));
                     mSongs.add(song);
                 }
+
+                Collections.sort(mSongs, new Comparator<Song>() {
+                    @Override
+                    public int compare(Song lhs, Song rhs) {
+                        return lhs.getVotos() > rhs.getVotos() ? 1 : 0;
+                    }
+                });
 
                 if (!mSongs.isEmpty()) {
                     mView.showSongs(mSongs);
@@ -67,12 +79,28 @@ public class MusicPresenter {
 
     public void newSong(@NonNull final Song song) {
         mSongs.add(song);
+
+        Collections.sort(mSongs, new Comparator<Song>() {
+            @Override
+            public int compare(Song lhs, Song rhs) {
+                return lhs.getVotos() > rhs.getVotos() ? 1 : 0;
+            }
+        });
+
         mRef.child(mEventKey).setValue(mSongs);
     }
 
     public void vote(@NonNull final Song song, final @SongViewHolder.VoteType int type) {
         song.vote(type);
         mSongs.set(mSongs.indexOf(song), song);
+
+        Collections.sort(mSongs, new Comparator<Song>() {
+            @Override
+            public int compare(Song lhs, Song rhs) {
+                return lhs.getVotos() > rhs.getVotos() ? 1 : 0;
+            }
+        });
+
         mRef.child(mEventKey).setValue(mSongs);
     }
 
