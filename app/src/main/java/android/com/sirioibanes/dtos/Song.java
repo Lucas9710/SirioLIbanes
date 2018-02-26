@@ -8,9 +8,13 @@ import java.util.HashMap;
 
 @IgnoreExtraProperties
 public class Song {
-    private final String artista;
-    private final String tema;
-    private Long votos;
+    public String artista;
+    public String tema;
+    public Long votos;
+
+    public Song() {
+    }
+
 
     public Song(HashMap<String, Object> map) {
         this.artista = (String) map.get("artista");
