@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/black">
 
     <ViewFlipper
         android:id="@+id/viewFlipper"
@@ -12,7 +13,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="textPersonName"
-                android:text="Y la compartes con.:" />
+                android:text="La compartes con:" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -63,7 +63,10 @@
             android:layout_margin="8dp"
             android:ems="10"
             android:gravity="center"
+            android:textSize="24sp"
             android:inputType="textPersonName"
-            android:text="No encontramos tu asignacion" />
+            android:text="No encontramos tu asignación" />
+
+
     </ViewFlipper>
 </FrameLayout>
