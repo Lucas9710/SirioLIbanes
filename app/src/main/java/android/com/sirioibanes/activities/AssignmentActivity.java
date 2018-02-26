@@ -73,7 +73,10 @@ public class AssignmentActivity extends AbstractActivity implements AssignmentVi
     @Override
     public void showAssignments(@NonNull final String table,
                                 @NonNull final List<HashMap<String, String>> assignments) {
-        ((TextView) findViewById(R.id.title)).setText(String.format("Tu mesa es la %1$s", table));
+
+        String tableNumber = table;
+        tableNumber = tableNumber.replace("Mesa ", "");
+        ((TextView) findViewById(R.id.title)).setText(String.format("Tu mesa es la %1$s", tableNumber));
         setState(STATE_LIST);
         mAdapter.setItems(assignments);
     }
