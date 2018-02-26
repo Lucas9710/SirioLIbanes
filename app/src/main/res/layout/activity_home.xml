@@ -47,7 +47,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:textSize="18sp"
-                    android:text="EVENTOS" />
+                    android:text="MIS EVENTOS"/>
 
                 <ViewFlipper
                     android:id="@+id/viewFlipper"
