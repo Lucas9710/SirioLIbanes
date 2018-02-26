@@ -1,5 +1,6 @@
 package android.com.sirioibanes.activities;
 
+import android.app.AlertDialog;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.adapters.MusicAdapter;
 import android.com.sirioibanes.adapters.holders.SongViewHolder;
@@ -9,6 +10,7 @@ import android.com.sirioibanes.presenters.MusicPresenter;
 import android.com.sirioibanes.utils.FeedbackUtils;
 import android.com.sirioibanes.views.MusicView;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +19,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ViewFlipper;
 
 import java.util.List;
@@ -29,6 +34,8 @@ public class MusicActivity extends AbstractActivity implements MusicView, MusicA
     private MusicPresenter mPresenter;
     private MusicAdapter mAdapter = new MusicAdapter();
     private Event mEvent;
+    private String mTextSong = "";
+    private String mTextArtist = "";
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final Event event) {
         final Intent intent = new Intent(context, MusicActivity.class);
@@ -54,6 +61,84 @@ public class MusicActivity extends AbstractActivity implements MusicView, MusicA
         recyclerView.setLayoutManager(new LinearLayoutManager(MusicActivity.this));
         recyclerView.addItemDecoration(new DividerItemDecoration(MusicActivity.this,
                 DividerItemDecoration.VERTICAL));
+
+
+        findViewById(R.id.buttonNewSong).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+            askSong();
+            }
+        });
+    }
+
+    private void askSong () {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Qué canción quieres proponer?");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mTextSong = input.getText().toString();
+                if (mTextSong.length() == 0) {
+                    dialog.cancel();
+                    return;
+                }
+                askArtist();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
+    private void askArtist () {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Quién es el autor de esta canción?");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mTextArtist = input.getText().toString();
+                if (mTextArtist.length() == 0) {
+                    dialog.cancel();
+                    return;
+                }
+                createSong();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
+    private void createSong () {
+        Song song = new Song();
+        song.artista = mTextArtist;
+        song.tema = mTextSong;
+        song.votos = Long.valueOf(1);
+        mPresenter.newSong(song);
     }
 
     @Override

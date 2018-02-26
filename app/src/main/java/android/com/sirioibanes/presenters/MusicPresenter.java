@@ -65,6 +65,11 @@ public class MusicPresenter {
         });
     }
 
+    public void newSong(@NonNull final Song song) {
+        mSongs.add(song);
+        mRef.child(mEventKey).setValue(mSongs);
+    }
+
     public void vote(@NonNull final Song song, final @SongViewHolder.VoteType int type) {
         song.vote(type);
         mSongs.set(mSongs.indexOf(song), song);

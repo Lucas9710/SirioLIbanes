@@ -7,30 +7,23 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ViewFlipper
-        android:id="@+id/viewFlipper"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="16dp"
-            android:text="No encontramos canciones propuestas aún"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <LinearLayout
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_above="@+id/buttonNewSong"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="16dp">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -38,14 +31,43 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Estas son las canciones más votadas."
+                android:text="No encontramos canciones propuestas aún"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </ViewFlipper>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Estas son las canciones más votadas."
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </ViewFlipper>
+
+        <Button
+            android:id="@+id/buttonNewSong"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="14dp"
+            android:text="Proponer nueva canción" />
+    </RelativeLayout>
+
 </LinearLayout>
