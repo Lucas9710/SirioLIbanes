@@ -25,10 +25,6 @@ public class MusicPresenter {
     private final String mEventKey;
     private MusicView mView;
     private ArrayList<Song> mSongs= new ArrayList<>();
-    private final ArrayList<Song> mSongs= new ArrayList<>();
-    private Song futureNewSong;
-    private Song futureVoteSong;
-    private int voteType;
 
     public MusicPresenter(@NonNull final String eventKey) {
         mEventKey = eventKey;
@@ -67,17 +63,6 @@ public class MusicPresenter {
                     }
                 });
 
-                if (futureNewSong != null) {
-                    actualNewSong();
-                    futureNewSong = null;
-                }
-
-                if (futureVoteSong != null) {
-                    actualVoteSong();
-                    futureVoteSong = null;
-                }
-
-
                 if (!mSongs.isEmpty()) {
                     mView.showSongs(mSongs);
                 } else {
@@ -93,12 +78,7 @@ public class MusicPresenter {
     }
 
     public void newSong(@NonNull final Song song) {
-        futureNewSong = song;
-        getSongs();
-    }
-
-    public void actualNewSong () {
-        mSongs.add(futureNewSong);
+        mSongs.add(song);
 
         Collections.sort(mSongs, new Comparator<Song>() {
             @Override
@@ -111,13 +91,8 @@ public class MusicPresenter {
     }
 
     public void vote(@NonNull final Song song, final @SongViewHolder.VoteType int type) {
-        futureVoteSong = song;
-        getSongs();
-    }
-
-    public void actualVoteSong () {
-        futureVoteSong.vote(voteType);
-        mSongs.set(mSongs.indexOf(futureVoteSong), futureVoteSong);
+        song.vote(type);
+        mSongs.set(mSongs.indexOf(song), song);
 
         Collections.sort(mSongs, new Comparator<Song>() {
             @Override
