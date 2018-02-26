@@ -22,13 +22,21 @@
                 android:layout_gravity="top"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginRight="42dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@mipmap/logo" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:text="@string/hintName"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -38,10 +46,10 @@
                     android:id="@+id/fieldName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:imeOptions="actionNext"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -51,7 +59,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/hintLastName"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -61,10 +69,10 @@
                     android:id="@+id/fieldLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="2dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:imeOptions="actionNext"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -74,7 +82,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/hintPhone"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -84,11 +92,11 @@
                     android:id="@+id/fieldPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -98,7 +106,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/hintEmail"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -108,10 +116,10 @@
                     android:id="@+id/fieldEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:imeOptions="actionNext"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
@@ -121,7 +129,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/hintPassword"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -131,16 +139,17 @@
                     android:id="@+id/fieldPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/buttonRegister"
+                    style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"

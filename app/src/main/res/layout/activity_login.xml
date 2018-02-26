@@ -24,7 +24,9 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginRight="42dp"
                     android:src="@mipmap/logo" />
 
                 <TextView
@@ -33,7 +35,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/hintEmail"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -43,10 +45,10 @@
                     android:id="@+id/fieldEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:inputType="text"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -55,7 +57,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/hintPassword"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -65,10 +67,10 @@
                     android:id="@+id/fieldPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@android:drawable/editbox_background_normal"
                     android:inputType="textPassword"
-                    android:padding="8dp"
+                    android:padding="4dp"
                     android:textColor="@color/black" />
 
                 <Button
