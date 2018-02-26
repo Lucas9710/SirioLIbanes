@@ -57,15 +57,23 @@
                 android:background="@color/white" />
         </LinearLayout>
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:ems="10"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:inputType="textPersonName"
-            android:text="No encontramos tu asignación" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:minLines="2"
+                android:padding="16dp"
+                android:text="No encontramos tu asignación"
+                android:textSize="18sp" />
+        </RelativeLayout>
 
 
     </ViewFlipper>
