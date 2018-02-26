@@ -22,6 +22,9 @@ import android.widget.ViewFlipper;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import org.joda.time.Interval;
+import org.joda.time.Period;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -215,20 +218,24 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     private void initCountDown(final Long timeStamp) {
-        final Long currentTime = Calendar.getInstance(TimeZone.getDefault()).getTimeInMillis();
-        final Long milisInFuture = new Date(timeStamp).getTime() - currentTime;
+        final long millis = Calendar.getInstance().getTimeInMillis() / 1000;
         final TextView counterDaysNumber = findViewById(R.id.counterDaysNumber);
         final TextView counterHoursNumber = findViewById(R.id.counterHoursNumber);
         final TextView counterMinutesNumber = findViewById(R.id.counterMinutesNumber);
 
-        new CountDownTimer(3000, 1000) {
+        new CountDownTimer(timeStamp - millis, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                // TODO: Hacer contador
+
+                final Interval interval = new Interval(Calendar.getInstance().getTimeInMillis(), timeStamp * 1000);
+                final Period period = interval.toPeriod();
+                counterDaysNumber.setText(String.valueOf(period.getDays()));
+                counterHoursNumber.setText(String.valueOf(period.getHours()));
+                counterMinutesNumber.setText(String.valueOf(period.getMinutes()));
             }
 
             public void onFinish() {
-                // Nothing to do
+
             }
         }.start();
     }
