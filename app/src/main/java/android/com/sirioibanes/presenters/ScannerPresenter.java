@@ -63,7 +63,7 @@ public class ScannerPresenter {
         final DatabaseReference eventTableRef = FirebaseDatabase.getInstance()
                 .getReference(DBConstants.TABLE_EVENTS);
 
-        userTableRef.addValueEventListener(new ValueEventListener() {
+        userTableRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot database) {
                 for (DataSnapshot snapshot : database.getChildren()) {

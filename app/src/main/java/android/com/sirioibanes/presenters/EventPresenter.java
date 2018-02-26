@@ -63,7 +63,7 @@ public class EventPresenter {
             }
         };
 
-        myRef.addValueEventListener(eventListener);
+        myRef.addListenerForSingleValueEvent(eventListener);
     }
 
     public void confirmAssistance(@NonNull final String status) {
