@@ -175,8 +175,12 @@ public class EventActivity extends AbstractActivity implements EventView {
         findViewById(R.id.buttonAssignment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                final Intent intent = new Intent(EventActivity.this, AssignmentActivity.class);
-                startActivity(intent);
+                if (mEvent.habilitada) {
+                    final Intent intent = AssignmentActivity.getIntent(EventActivity.this, event);
+                    startActivity(intent);
+                } else {
+                    FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView), "Asignación no disponible");
+                }
             }
         });
 

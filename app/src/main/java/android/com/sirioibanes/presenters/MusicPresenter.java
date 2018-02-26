@@ -13,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class MusicPresenter {
     private final DatabaseReference mRef;
     private final String mEventKey;
     private MusicView mView;
-    private final ArrayList<Song> mSongs= new ArrayList<>();
+    private final ArrayList<Song> mSongs = new ArrayList<>();
 
     public MusicPresenter(@NonNull final String eventKey) {
         mEventKey = eventKey;
@@ -52,6 +54,13 @@ public class MusicPresenter {
                 }
 
                 if (!mSongs.isEmpty()) {
+                    Collections.sort(mSongs, new Comparator<Song>() {
+                        @Override
+                        public int compare(Song o1, Song o2) {
+                            return (o1.getVotos() < o2.getVotos()) ? 1 : ((o1.getVotos() == o2.getVotos()) ? 0 : -1);
+                        }
+                    });
+
                     mView.showSongs(mSongs);
                 } else {
                     mView.onEmptyResults();

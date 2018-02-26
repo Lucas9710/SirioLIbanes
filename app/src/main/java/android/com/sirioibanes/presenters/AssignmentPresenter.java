@@ -3,9 +3,7 @@ package android.com.sirioibanes.presenters;
 import android.com.sirioibanes.database.DBConstants;
 import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.AssignmentView;
-import android.com.sirioibanes.views.HomeView;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,8 +11,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,26 +21,38 @@ import java.util.List;
 
 public class AssignmentPresenter {
 
+    private final String mEventKey;
     private AssignmentView mView;
     private final DatabaseReference myRef;
 
-    public AssignmentPresenter() {
+    public AssignmentPresenter(@NonNull final String eventKey) {
+        mEventKey = eventKey;
         myRef = FirebaseDatabase.getInstance().getReference(DBConstants.TABLE_ASSIGNMENTS);
     }
 
-    private void getFriends() {
-
-
-        Log.d("ASSIGN_TAG","getting friends");
+    private void getAssignment() {
 
         final ValueEventListener eventListener = new ValueEventListener() {
             @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
-                final List<AbstractMap<String, Object>> events = new ArrayList<>();
 
-                for (final DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                   Log.d("ASSIGN_TAG",postSnapshot.getValue().toString());
+                for (final DataSnapshot postSnapshot : dataSnapshot.child(mEventKey).getChildren()) {
+                    final List<HashMap<String, String>> list =
+                            ((List<HashMap<String, String>>) postSnapshot.getValue());
+
+                    if (list == null || list.isEmpty()) {
+                        mView.showEmptyView();
+                    } else {
+                        final List<HashMap<String, String>> mapList = new ArrayList<>(list);
+
+                        for (HashMap<String, String> map : list) {
+                            if (map.get("nickname").equals(AuthenticationManager.getInstance().getUser(mView.getContext()).getNickname())) {
+                                mapList.remove(map);
+                                mView.showAssignments(postSnapshot.getKey(), mapList);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -56,7 +66,7 @@ public class AssignmentPresenter {
     }
 
     public void onAttachView(@NonNull final AssignmentView view) {
-        getFriends();
+        getAssignment();
         mView = view;
     }
 }

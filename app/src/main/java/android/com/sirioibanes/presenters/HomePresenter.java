@@ -58,7 +58,7 @@ public class HomePresenter {
             }
         };
 
-        myRef.addValueEventListener(eventListener);
+        myRef.addListenerForSingleValueEvent(eventListener);
     }
 
     public void onAttachView(@NonNull final HomeView view) {
