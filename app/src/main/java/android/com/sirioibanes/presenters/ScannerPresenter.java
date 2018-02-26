@@ -60,6 +60,9 @@ public class ScannerPresenter {
         final DatabaseReference userTableRef = FirebaseDatabase.getInstance()
                 .getReference(DBConstants.TABLE_USERS);
 
+        final DatabaseReference eventTableRef = FirebaseDatabase.getInstance()
+                .getReference(DBConstants.TABLE_EVENTS);
+
         userTableRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot database) {
@@ -70,6 +73,16 @@ public class ScannerPresenter {
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull final Task<Void> task) {
+
+                                        eventTableRef.child(eventKey).child("invitados").child(AuthenticationManager.getInstance()
+                                                .getUser(mView.getContext()).getNickname()).setValue("indeterminado")
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        mView.onEventAssociationError();
+                                                    }
+                                                });
+
                                         AuthenticationManager.getInstance().associateEvent(mView.getContext(), eventKey);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
