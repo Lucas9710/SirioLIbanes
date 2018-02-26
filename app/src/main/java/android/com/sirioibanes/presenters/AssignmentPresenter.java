@@ -50,8 +50,11 @@ public class AssignmentPresenter {
                             if (map.get("nickname").equals(AuthenticationManager.getInstance().getUser(mView.getContext()).getNickname())) {
                                 mapList.remove(map);
                                 mView.showAssignments(postSnapshot.getKey(), mapList);
+                                return;
                             }
                         }
+
+                        mView.showEmptyView();
                     }
                 }
             }
