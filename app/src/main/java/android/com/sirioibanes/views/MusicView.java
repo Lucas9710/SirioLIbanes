@@ -14,6 +14,4 @@ public interface MusicView {
     void onError();
 
     void onEmptyResults();
-
-    void onVoteSuccess(@NonNull Song song);
 }

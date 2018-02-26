@@ -109,16 +109,7 @@ public class MusicActivity extends AbstractActivity implements MusicView, MusicA
             FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView), "Ya has votado este canción");
         } else {
             mPresenter.vote(song, type);
+            prefs.edit().putBoolean(key, true).apply();
         }
-    }
-
-    @Override
-    public void onVoteSuccess(@NonNull final Song song) {
-        final SharedPreferences prefs = getSharedPreferences(mEvent.key, MODE_PRIVATE);
-        final String songName = song.getTema().replace(" ", "_");
-        final String artistName = song.getArtista() == null ? "Desconocido" : song.getArtista().replace(" ", "_");
-        final String key = songName.concat("-").concat(artistName);
-
-        prefs.edit().putBoolean(key, true).apply();
     }
 }
