@@ -1,5 +1,6 @@
 package android.com.sirioibanes.activities;
 
+import android.app.AlertDialog;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.adapters.EventsAdapter;
 import android.com.sirioibanes.dtos.Event;
@@ -7,7 +8,9 @@ import android.com.sirioibanes.presenters.HomePresenter;
 import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.views.HomeView;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -49,15 +52,43 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
         findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                AuthenticationManager.getInstance().logout(HomeActivity.this);
-                startActivity(new Intent(HomeActivity.this, SplitterActivity.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                                | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                askLogout();
             }
         });
     }
 
-    @Override
+    private void askLogout() {
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Cerrar sesión")
+                .setMessage("¿Está seguro de que desea cerrar su sesión?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        doLogout();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .show();
+
+    }
+
+    private void doLogout() {
+        AuthenticationManager.getInstance().logout(HomeActivity.this);
+        startActivity(new Intent(HomeActivity.this, SplitterActivity.class)
+                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+    }
+
+        @Override
     protected void onStart() {
         super.onStart();
         mPresenter.onAttachView(this);
