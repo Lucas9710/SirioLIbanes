@@ -34,8 +34,30 @@ public class ScannerPresenter {
     public void getEvent(@NonNull final String code) {
 
         final DatabaseReference ref = FirebaseDatabase.getInstance()
-                .getReference(DBConstants.TABLE_EVENTS).child(getNormalizedCode(code));
+                .getReference(DBConstants.TABLE_CODES).child(getNormalizedCode(code));
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                final String eventKey = (String) dataSnapshot.getValue();
+                if (eventKey != null) {
+                    getEventPostCodeRedeem(eventKey);
+                } else {
+                    mView.onInvalidEvent();
+                }
+            }
 
+            @Override
+            public void onCancelled(final DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void getEventPostCodeRedeem(@NonNull final String eventKey) {
+
+        final DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference(DBConstants.TABLE_EVENTS).child(getNormalizedCode(eventKey));
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -43,8 +65,8 @@ public class ScannerPresenter {
                 if (event == null) {
                     mView.onInvalidEvent();
                 } else {
-                    mView.showEvent(new Event(code, event));
-                    associateEvent(code);
+                    mView.showEvent(new Event(eventKey, event));
+                    associateEvent(eventKey);
                 }
             }
 
