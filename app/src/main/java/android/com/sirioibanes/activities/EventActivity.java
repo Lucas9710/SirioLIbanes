@@ -227,11 +227,17 @@ public class EventActivity extends AbstractActivity implements EventView {
 
             public void onTick(long millisUntilFinished) {
 
-                final Interval interval = new Interval(Calendar.getInstance().getTimeInMillis(), timeStamp * 1000);
-                final Period period = interval.toPeriod();
-                counterDaysNumber.setText(String.valueOf(period.getDays()));
-                counterHoursNumber.setText(String.valueOf(period.getHours()));
-                counterMinutesNumber.setText(String.valueOf(period.getMinutes()));
+                double totalMilliseconds =  (timeStamp * 1000.0) - Calendar.getInstance().getTimeInMillis();
+                double totalSeconds = totalMilliseconds / 1000.0;
+                int seconds = (int) (totalSeconds % 60);
+                int minutes = (int) (totalSeconds / 60) % 60;
+                int hours = (int) (totalSeconds / (60 * 60)) % 24;
+                int days = (int) (totalSeconds / (60 * 60 * 24));
+
+
+                counterDaysNumber.setText(String.valueOf(days));
+                counterHoursNumber.setText(String.valueOf(hours));
+                counterMinutesNumber.setText(String.valueOf(minutes));
             }
 
             public void onFinish() {
