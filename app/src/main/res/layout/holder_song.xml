@@ -77,15 +77,5 @@
             android:gravity="center"
             android:text="+" />
 
-        <Button
-            android:id="@+id/buttonVoteDown"
-            style="@style/AppTheme.Button"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="-" />
-
     </LinearLayout>
 </RelativeLayout>
