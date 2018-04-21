@@ -31,12 +31,12 @@ public class MusicAdapter extends RecyclerView.Adapter<SongViewHolder> {
     public void onBindViewHolder(final SongViewHolder holder, final int position) {
         holder.onBind(mSongs.get(holder.getAdapterPosition()));
 
-        holder.itemView.findViewById(R.id.buttonVoteUp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                mListener.onVote(mSongs.get(holder.getAdapterPosition()), SongViewHolder.VOTE_UP);
-            }
-        });
+//        holder.itemView.findViewById(R.id.buttonVoteUp).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View v) {
+//                mListener.onVote(mSongs.get(holder.getAdapterPosition()), SongViewHolder.VOTE_UP);
+//            }
+//        });
 
 
     }

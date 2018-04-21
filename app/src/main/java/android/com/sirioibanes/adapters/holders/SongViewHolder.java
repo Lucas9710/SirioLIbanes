@@ -27,9 +27,9 @@ public class SongViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(@NonNull final Song song) {
         final String artist = song.getArtista() == null ? "Desconocido" : song.getArtista();
-
-        ((TextView) itemView.findViewById(R.id.artistView)).setText(artist);
-        ((TextView) itemView.findViewById(R.id.songView)).setText(song.getTema());
-        ((TextView) itemView.findViewById(R.id.counterView)).setText(String.valueOf(song.getVotos()));
+//
+//        ((TextView) itemView.findViewById(R.id.artistView)).setText(artist);
+//        ((TextView) itemView.findViewById(R.id.songView)).setText(song.getTema());
+//        ((TextView) itemView.findViewById(R.id.counterView)).setText(String.valueOf(song.getVotos()));
     }
 }
