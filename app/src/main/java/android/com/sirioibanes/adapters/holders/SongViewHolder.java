@@ -19,6 +19,9 @@ public class SongViewHolder extends RecyclerView.ViewHolder {
     public static final int VOTE_DOWN = 0;
     public static final int VOTE_UP = 1;
     private final TextView artistLabel;
+    private final TextView cancionLabel;
+    private final TextView userLabel;
+    private final TextView votosLabel;
 
     @IntDef({VOTE_DOWN, VOTE_UP})
     @Retention(RetentionPolicy.SOURCE)
@@ -32,14 +35,55 @@ public class SongViewHolder extends RecyclerView.ViewHolder {
         //este metodo se ejecuta al inicializar de la celda
         super(itemView);
         artistLabel = (TextView) itemView.findViewById(R.id.artistLabel);
+        cancionLabel = (TextView) itemView.findViewById(R.id.songLabel);
+        userLabel = (TextView) itemView.findViewById(R.id.userLabel);
+        votosLabel = (TextView) itemView.findViewById(R.id.voteLabel);
     }
 
     public void onBind(@NonNull final Song song) {
         //este metodo se ejecuta cuando queremos impactar la informacion de una cancion
-        String artistText = "Artista desconocido";
-        if (song.artista != null) {
+
+
+        //ARTISTA
+        String artistText;
+        if (song.artista == null) {
+            artistText = "Artista desconocido";
+        } else {
             artistText = song.artista;
         }
         artistLabel.setText(artistText);
+
+        //CANCION
+        String cancionText;
+        if (song.tema == null) {
+            cancionText = "Cancion Desconocido";
+        } else {
+            cancionText = song.tema;
+        }
+        cancionLabel.setText(cancionText);
+
+        //USER
+        String userText;
+        if (song.user == null) {
+            userText = "Usuario Desconocido";
+        } else {
+            userText = song.user;
+        }
+        userLabel.setText(userText);
+
+        //VOTE
+        String voteText;
+        if (song.votos == null) {
+            voteText = "0";
+        } else {
+            String strLong = Long.toString(song.votos);
+            //song.votos = 1 -> NO FUNCIONA
+            //strLong = "1" -> SI FUNCIONA
+            voteText = strLong;
+        }
+        votosLabel.setText(voteText);
+
     }
 }
+
+
