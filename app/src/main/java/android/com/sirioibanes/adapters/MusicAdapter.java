@@ -3,6 +3,7 @@ package android.com.sirioibanes.adapters;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.adapters.holders.SongViewHolder;
 import android.com.sirioibanes.dtos.Song;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,9 +17,10 @@ public class MusicAdapter extends RecyclerView.Adapter<SongViewHolder> {
 
     private final List<Song> mSongs = new ArrayList<>();
     private OnAction mListener;
+    public SharedPreferences prefs;
 
     public interface OnAction {
-        void onVote(@NonNull final Song song, final @SongViewHolder.VoteType int type);
+        void onVote(@NonNull final Song song);
     }
 
     @Override
@@ -31,12 +33,12 @@ public class MusicAdapter extends RecyclerView.Adapter<SongViewHolder> {
     public void onBindViewHolder(final SongViewHolder holder, final int position) {
         holder.onBind(mSongs.get(holder.getAdapterPosition()));
 
-//        holder.itemView.findViewById(R.id.buttonVoteUp).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View v) {
-//                mListener.onVote(mSongs.get(holder.getAdapterPosition()), SongViewHolder.VOTE_UP);
-//            }
-//        });
+        holder.itemView.findViewById(R.id.imageButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                mListener.onVote(mSongs.get(holder.getAdapterPosition()));
+            }
+        });
 
 
     }
@@ -49,7 +51,28 @@ public class MusicAdapter extends RecyclerView.Adapter<SongViewHolder> {
     public void setItems(@NonNull final List<Song> songs, @NonNull final OnAction listener) {
         mListener = listener;
         mSongs.clear();
+
+        Long numeroDeRanking = new Long(0);
+        for (Song song : songs) {
+            numeroDeRanking = numeroDeRanking + 1;
+            song.ranking = numeroDeRanking;
+
+            final String songName = song.getTema().replace(" ", "_");
+            final String artistName = song.getArtista() == null ? "Desconocido" : song.getArtista().replace(" ", "_");
+            final String key = songName.concat("-").concat(artistName);
+
+            if (prefs.getBoolean(key, false)) {
+                song.votado = true;
+            } else {
+                song.votado = false;
+            }
+
+        }
+
         mSongs.addAll(songs);
+
+
+
         notifyDataSetChanged();
     }
 

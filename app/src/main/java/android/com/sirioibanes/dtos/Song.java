@@ -11,7 +11,9 @@ public class Song {
     public String artista;
     public String tema;
     public Long votos;
+    public Long ranking;
     public String user;
+    public Boolean votado;
     public Song() {
     }
 
@@ -22,6 +24,7 @@ public class Song {
         this.tema = (String) map.get("tema");
         this.votos = (Long) map.get("votos");
         this.user = (String) map.get("user");
+        this.votado = false;
     }
 
     public String getArtista() {
@@ -38,8 +41,10 @@ public class Song {
 
     public void vote(final int type) {
         if (type == SongViewHolder.VOTE_UP) {
+            this.votado = true;
             this.votos++;
         } else {
+            this.votado = false;
             this.votos--;
         }
     }

@@ -7,6 +7,7 @@ import android.com.sirioibanes.adapters.holders.SongViewHolder;
 import android.com.sirioibanes.dtos.Event;
 import android.com.sirioibanes.dtos.Song;
 import android.com.sirioibanes.presenters.MusicPresenter;
+import android.com.sirioibanes.utils.AuthenticationManager;
 import android.com.sirioibanes.utils.FeedbackUtils;
 import android.com.sirioibanes.views.MusicView;
 import android.content.Context;
@@ -136,8 +137,12 @@ public class MusicActivity extends AbstractActivity implements MusicView, MusicA
     private void createSong () {
         Song song = new Song();
         song.artista = mTextArtist;
-        song.tema = mTextSong;
-        song.votos = Long.valueOf(1);
+        song.tema = mTextSong;;
+
+        String nombre = AuthenticationManager.getInstance().getUser(this.getContext()).getNombre();
+        String apellido = AuthenticationManager.getInstance().getUser(this.getContext()).getApellido();
+        song.user = nombre + " " + apellido;
+        song.votos = Long.valueOf(0);
         mPresenter.newSong(song);
     }
 
@@ -166,6 +171,8 @@ public class MusicActivity extends AbstractActivity implements MusicView, MusicA
     @Override
     public void showSongs(@NonNull List<Song> songs) {
         setState(STATE_RESULTS);
+        final SharedPreferences prefs = getSharedPreferences(mEvent.key, MODE_PRIVATE);
+        mAdapter.prefs = prefs;
         mAdapter.setItems(songs, this);
     }
 
@@ -184,16 +191,17 @@ public class MusicActivity extends AbstractActivity implements MusicView, MusicA
     }
 
     @Override
-    public void onVote(@NonNull Song song, final @SongViewHolder.VoteType int type) {
+    public void onVote(@NonNull Song song) {
         final SharedPreferences prefs = getSharedPreferences(mEvent.key, MODE_PRIVATE);
         final String songName = song.getTema().replace(" ", "_");
         final String artistName = song.getArtista() == null ? "Desconocido" : song.getArtista().replace(" ", "_");
         final String key = songName.concat("-").concat(artistName);
 
         if (prefs.getBoolean(key, false)) {
-            FeedbackUtils.displaySnackbarError(findViewById(R.id.rootView), "Ya has votado este canción");
+            mPresenter.vote(song, SongViewHolder.VOTE_DOWN);
+            prefs.edit().putBoolean(key, false).apply();
         } else {
-            mPresenter.vote(song, type);
+            mPresenter.vote(song, SongViewHolder.VOTE_UP);
             prefs.edit().putBoolean(key, true).apply();
         }
     }
