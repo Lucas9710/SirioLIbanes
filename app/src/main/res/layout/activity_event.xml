@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +10,7 @@
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ProgressBar
             android:layout_width="wrap_content"
@@ -20,21 +22,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Información general"
-                android:textColor="@color/white"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:textStyle="bold" />
-
 
             <FrameLayout
+                android:id="@+id/upper_box"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Información general"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/eventPicture"
@@ -136,96 +139,132 @@
                 </TableLayout>
             </FrameLayout>
 
-            <Button
-                android:id="@+id/buttonMap"
-                style="@style/AppTheme.Button"
+            <RelativeLayout
+                android:id="@+id/blue_box"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="16dp"
-                android:radius="20dp"
-                android:textSize="14sp"
-                android:text="Cómo llegar" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/buttonSocialNetworks"
-                style="@style/AppTheme.Button"
+                <FrameLayout
+                    android:id="@+id/center_view"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/black">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:id="@+id/buttonMap"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="¿Cómo llego?"
+                            android:textSize="13sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/buttonMusic"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginStart="16dp"
+                            android:text="Ranking&#10;musical"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <Button
+                            android:id="@+id/buttonSocialNetworks"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="Redes sociales"
+                            android:textSize="13sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/buttonAssignment"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="Mi mesa"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </android.support.constraint.ConstraintLayout>
+                </FrameLayout>
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/red_box"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:radius="20dp"
-                android:textSize="14sp"
-                android:text="Redes sociales" />
+                android:layout_height="150dp"
+                android:background="@color/red">
 
-            <Button
-                android:id="@+id/buttonMusic"
-                style="@style/AppTheme.Button"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:radius="20dp"
-                android:textSize="14sp"
-                android:text="Ranking musical" />
-
-            <Button
-                android:id="@+id/buttonAssignment"
-                style="@style/AppTheme.Button"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:radius="20dp"
-                android:textSize="14sp"
-                android:text="Mi mesa" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:weightSum="3">
-
-                <Button
-                    android:id="@+id/buttonAssistNegative"
-                    style="@style/AppTheme.Button"
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:textSize="14sp"
-                    android:text="No asistiré" />
+                    android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/buttonAssistMaybe"
-                    style="@style/AppTheme.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:textSize="14sp"
-                    android:text="Quizás" />
+                    <Button
+                        android:id="@+id/buttonAssistConfirm"
+                        style="@style/AppTheme.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Asistiré"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.313" />
 
-                <Button
-                    android:id="@+id/buttonAssistConfirm"
-                    style="@style/AppTheme.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:textSize="14sp"
-                    android:text="Asistiré" />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/buttonAssistMaybe"
+                        style="@style/AppTheme.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="quizás"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/buttonAssistNegative"
+                        app:layout_constraintStart_toEndOf="@+id/buttonAssistConfirm"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.313" />
+
+                    <Button
+                        android:id="@+id/buttonAssistNegative"
+                        style="@style/AppTheme.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="8dp"
+                        android:text="No asistiré"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.313" />
+                </android.support.constraint.ConstraintLayout>
+            </FrameLayout>
+
         </LinearLayout>
 
     </ViewFlipper>
+
 </ScrollView>
