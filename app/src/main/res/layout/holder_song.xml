@@ -15,10 +15,14 @@
             android:id="@+id/imageView"
             android:layout_width="47dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/rankingLabel"
-            app:layout_constraintEnd_toEndOf="@+id/rankingLabel"
+            app:layout_constraintEnd_toStartOf="@+id/songLabel"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/rankingLabel"
             app:layout_constraintTop_toTopOf="@+id/rankingLabel"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ranking1" />
 
         <TextView
@@ -101,8 +105,8 @@
 
         <TextView
             android:id="@+id/rankingLabel"
-            android:layout_width="50dp"
-            android:layout_height="0dp"
+            android:layout_width="37dp"
+            android:layout_height="58dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
@@ -110,7 +114,7 @@
             android:gravity="center"
             android:text="1"
             android:textColor="@android:color/black"
-            android:textSize="32sp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
