@@ -162,10 +162,25 @@
                             android:layout_height="120dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="¿Cómo llego?"
                             android:textSize="13sp"
+                            android:elevation="1dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="44dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:elevation="6dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonMap"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonMap"
+                            app:layout_constraintStart_toStartOf="@+id/buttonMap"
+                            app:layout_constraintTop_toTopOf="@+id/buttonMap"
+                            app:srcCompat="@drawable/activity_maps" />
 
                         <Button
                             android:id="@+id/buttonMusic"
@@ -174,10 +189,27 @@
                             android:layout_height="120dp"
                             android:layout_marginBottom="16dp"
                             android:layout_marginStart="16dp"
-                            android:text="Ranking&#10;musical"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@android:color/black"
+                            android:elevation="6dp"
+                            android:gravity="center"
+                            android:text="Mi mesa"
+                            android:textColor="@android:color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonAssignment"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonAssignment"
+                            app:layout_constraintStart_toStartOf="@+id/buttonAssignment"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
                         <Button
                             android:id="@+id/buttonSocialNetworks"
@@ -186,7 +218,6 @@
                             android:layout_height="120dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="Redes sociales"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -198,10 +229,107 @@
                             android:layout_height="120dp"
                             android:layout_marginBottom="16dp"
                             android:layout_marginEnd="16dp"
-                            android:text="Mi mesa"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:background="@android:color/black"
+                            android:elevation="6dp"
+                            android:gravity="center"
+                            android:text="Redes&#10;sociales"
+                            android:textColor="@android:color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonSocialNetworks"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonSocialNetworks"
+                            app:layout_constraintStart_toStartOf="@+id/buttonSocialNetworks"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="44dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:elevation="6dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonSocialNetworks"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonSocialNetworks"
+                            app:layout_constraintStart_toStartOf="@+id/buttonSocialNetworks"
+                            app:layout_constraintTop_toTopOf="@+id/buttonSocialNetworks"
+                            app:srcCompat="@drawable/activity_social" />
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="44dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:elevation="6dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonMusic"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonMusic"
+                            app:layout_constraintStart_toStartOf="@+id/buttonMusic"
+                            app:layout_constraintTop_toTopOf="@+id/buttonMusic"
+                            app:srcCompat="@drawable/activity_music" />
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="44dp"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:elevation="6dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonAssignment"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonAssignment"
+                            app:layout_constraintStart_toStartOf="@+id/buttonAssignment"
+                            app:layout_constraintTop_toTopOf="@+id/buttonAssignment"
+                            app:srcCompat="@drawable/activity_mesa" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@android:color/black"
+                            android:elevation="6dp"
+                            android:text="¿Cómo llego?"
+                            android:textColor="@android:color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonMap"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonMap"
+                            app:layout_constraintStart_toStartOf="@+id/buttonMap"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="-2dp"
+                            android:background="@android:color/black"
+                            android:elevation="6dp"
+                            android:gravity="center"
+                            android:text="Ranking&#10;musical"
+                            android:textColor="@android:color/white"
+                            app:layout_constraintBottom_toBottomOf="@+id/buttonMusic"
+                            app:layout_constraintEnd_toEndOf="@+id/buttonMusic"
+                            app:layout_constraintStart_toStartOf="@+id/buttonMusic"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
                     </android.support.constraint.ConstraintLayout>
                 </FrameLayout>
