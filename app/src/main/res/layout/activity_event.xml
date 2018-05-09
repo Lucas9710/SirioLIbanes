@@ -12,6 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:layout_editor_absoluteX="124dp"
+            tools:layout_editor_absoluteY="10dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -349,7 +357,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="40dp"
                         android:text="Asistiré"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -364,8 +372,8 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="32dp"
-                        android:text="quizás"
+                        android:layout_marginTop="40dp"
+                        android:text="Quizás"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/buttonAssistNegative"
                         app:layout_constraintStart_toEndOf="@+id/buttonAssistConfirm"
@@ -379,7 +387,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="40dp"
                         android:text="No asistiré"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -417,7 +425,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="16dp"
                         android:background="@android:color/black"
                         android:text="Contacto"
                         android:textColor="@android:color/white"
@@ -432,7 +440,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="32dp"
                         android:background="@android:color/black"
                         android:text="1554033249"
                         android:textColor="@android:color/white"
@@ -448,7 +456,7 @@
                         android:layout_height="40dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="32dp"
                         android:background="@android:color/black"
                         android:scaleType="fitCenter"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -461,14 +469,6 @@
             </FrameLayout>
 
         </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            tools:layout_editor_absoluteX="124dp"
-            tools:layout_editor_absoluteY="10dp" />
 
     </ViewFlipper>
 

@@ -145,6 +145,8 @@ public class EventActivity extends AbstractActivity implements EventView {
         callbutton = (ImageButton) this.findViewById(R.id.callbutton);
         number = (TextView) this.findViewById(R.id.number);
 
+        number.setText(mEvent.telefono);
+
         callbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,7 +236,7 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     private void callPhone () {
-        String phone = "1121628170";
+        String phone = number.getText().toString();
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
     }
