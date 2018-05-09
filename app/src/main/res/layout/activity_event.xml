@@ -12,32 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
+            <TextView
+                android:id="@+id/textView11"
+                android:textSize="17sp"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:gravity="center"
+                android:text="Información general"
+                android:textColor="@android:color/white" />
+
             <FrameLayout
                 android:id="@+id/upper_box"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
-                    android:text="Información general"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/eventPicture"
@@ -140,7 +134,7 @@
             </FrameLayout>
 
             <RelativeLayout
-                android:id="@+id/blue_box"
+                android:id="@+id/grid_box"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -162,8 +156,8 @@
                             android:layout_height="120dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:textSize="13sp"
                             android:elevation="1dp"
+                            android:textSize="13sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -315,7 +309,7 @@
 
                         <TextView
                             android:id="@+id/textView5"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_marginBottom="2dp"
                             android:layout_marginEnd="8dp"
@@ -336,19 +330,16 @@
             </RelativeLayout>
 
             <FrameLayout
-                android:id="@+id/red_box"
+                android:id="@+id/asist_box"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="100dp"
                 android:background="@color/red">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:textColor="@android:color/holo_red_dark"
+                    android:layout_height="match_parent"
                     android:background="@android:color/black"
-                    android:layout_height="match_parent">
-
-
-
+                    android:textColor="@android:color/holo_red_dark">
 
 
                     <Button
@@ -358,7 +349,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="32dp"
                         android:text="Asistiré"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -373,7 +364,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="32dp"
                         android:text="quizás"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/buttonAssistNegative"
@@ -388,16 +379,96 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="20dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="32dp"
                         android:text="No asistiré"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.313" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Confirmar asistencia"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonAssistMaybe"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/contacbox"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/black"
+                        android:text="Contacto"
+                        android:textColor="@android:color/white"
+                        android:textSize="17sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/black"
+                        android:text="1554033249"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.113" />
+
+                    <ImageButton
+                        android:id="@+id/callbutton"
+                        android:layout_width="62dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/black"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/callicon" />
+
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:layout_editor_absoluteX="124dp"
+            tools:layout_editor_absoluteY="10dp" />
 
     </ViewFlipper>
 

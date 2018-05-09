@@ -14,6 +14,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,8 @@ public class EventActivity extends AbstractActivity implements EventView {
     private static final String PARAM_EVENT = "evento";
     private Event mEvent;
     private EventPresenter mPresenter;
+    private ImageButton callbutton;
+    private TextView number;
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final Event event) {
         final Intent intent = new Intent(context, EventActivity.class);
@@ -48,6 +51,7 @@ public class EventActivity extends AbstractActivity implements EventView {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        View itemView;
 
         if ((getIntent().getExtras() != null && !getIntent().getExtras().containsKey(EXTRA_EVENT))
                 && (getIntent().getData() == null
@@ -138,6 +142,18 @@ public class EventActivity extends AbstractActivity implements EventView {
     private void render(final Event event) {
         initCountDown(event.timestamp);
 
+        callbutton = (ImageButton) this.findViewById(R.id.callbutton);
+        number = (TextView) this.findViewById(R.id.number);
+
+        callbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callPhone();
+            }
+        });
+
+
+
         Picasso.with(EventActivity.this).load(event.foto)
                 .into((ImageView) findViewById(R.id.eventPicture), new Callback() {
                     @Override
@@ -215,6 +231,12 @@ public class EventActivity extends AbstractActivity implements EventView {
                 mPresenter.confirmAssistance(EventPresenter.ASSISTANCE_MAYBE);
             }
         });
+    }
+
+    private void callPhone () {
+        String phone = "1121628170";
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+        startActivity(intent);
     }
 
     private void initCountDown(final Long timeStamp) {
