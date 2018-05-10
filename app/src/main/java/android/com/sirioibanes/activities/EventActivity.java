@@ -242,12 +242,11 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     private void initCountDown(final Long timeStamp) {
-        final long millis = Calendar.getInstance().getTimeInMillis() / 1000;
         final TextView counterDaysNumber = findViewById(R.id.counterDaysNumber);
         final TextView counterHoursNumber = findViewById(R.id.counterHoursNumber);
         final TextView counterMinutesNumber = findViewById(R.id.counterMinutesNumber);
 
-        new CountDownTimer(timeStamp - millis, 1000) {
+        new CountDownTimer(100000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 double secondsforevent = timeStamp;
@@ -267,9 +266,9 @@ public class EventActivity extends AbstractActivity implements EventView {
                     counterMinutesNumber.setText(String.valueOf(minutes));
                 } else {
                     //evento en el pasado//
-                    counterDaysNumber.setText(String.valueOf(0));
-                    counterHoursNumber.setText(String.valueOf(0));
-                    counterMinutesNumber.setText(String.valueOf(0));
+                    counterDaysNumber.setText("00");
+                    counterHoursNumber.setText("00");
+                    counterMinutesNumber.setText("00");
                 }
 
 
