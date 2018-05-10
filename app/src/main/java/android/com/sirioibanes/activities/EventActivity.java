@@ -250,18 +250,29 @@ public class EventActivity extends AbstractActivity implements EventView {
         new CountDownTimer(timeStamp - millis, 1000) {
 
             public void onTick(long millisUntilFinished) {
+                double secondsforevent = timeStamp;
+                double secondsfornow =  Calendar.getInstance().getTimeInMillis() /1000.0;
+                if (secondsforevent > secondsfornow){
+                //evento en el futuro//
+                    double totalMilliseconds =  (timeStamp * 1000.0) - Calendar.getInstance().getTimeInMillis();
+                    double totalSeconds = totalMilliseconds / 1000.0;
+                    int seconds = (int) (totalSeconds % 60);
+                    int minutes = (int) (totalSeconds / 60) % 60;
+                    int hours = (int) (totalSeconds / (60 * 60)) % 24;
+                    int days = (int) (totalSeconds / (60 * 60 * 24));
 
-                double totalMilliseconds =  (timeStamp * 1000.0) - Calendar.getInstance().getTimeInMillis();
-                double totalSeconds = totalMilliseconds / 1000.0;
-                int seconds = (int) (totalSeconds % 60);
-                int minutes = (int) (totalSeconds / 60) % 60;
-                int hours = (int) (totalSeconds / (60 * 60)) % 24;
-                int days = (int) (totalSeconds / (60 * 60 * 24));
+
+                    counterDaysNumber.setText(String.valueOf(days));
+                    counterHoursNumber.setText(String.valueOf(hours));
+                    counterMinutesNumber.setText(String.valueOf(minutes));
+                } else {
+                    //evento en el pasado//
+                    counterDaysNumber.setText(String.valueOf(0));
+                    counterHoursNumber.setText(String.valueOf(0));
+                    counterMinutesNumber.setText(String.valueOf(0));
+                }
 
 
-                counterDaysNumber.setText(String.valueOf(days));
-                counterHoursNumber.setText(String.valueOf(hours));
-                counterMinutesNumber.setText(String.valueOf(minutes));
             }
 
             public void onFinish() {
