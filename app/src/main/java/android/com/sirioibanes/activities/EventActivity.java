@@ -38,6 +38,13 @@ public class EventActivity extends AbstractActivity implements EventView {
     private EventPresenter mPresenter;
     private ImageButton callbutton;
     private TextView number;
+    private TextView eventFinishLabel;
+    private TextView counterDaysNumber;
+    private TextView counterHoursNumber;
+    private TextView counterMinutesNumber;
+    private TextView counterDaysLabel;
+    private TextView counterHoursLabel;
+    private TextView counterMinutesLabel;
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final Event event) {
         final Intent intent = new Intent(context, EventActivity.class);
@@ -51,6 +58,18 @@ public class EventActivity extends AbstractActivity implements EventView {
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+
+
+        eventFinishLabel = (TextView) findViewById(R.id.eventFinishLabel);
+        counterDaysNumber = (TextView) findViewById(R.id.counterDaysNumber);
+        counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
+        counterMinutesLabel = (TextView) findViewById(R.id.counterMinutesLabel);
+        counterDaysLabel = (TextView) findViewById(R.id.counterDaysLabel);
+        counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
+        counterMinutesLabel= (TextView) findViewById(R.id.counterMinutesLabel);
+
+
+
         View itemView;
 
         if ((getIntent().getExtras() != null && !getIntent().getExtras().containsKey(EXTRA_EVENT))
@@ -251,7 +270,7 @@ public class EventActivity extends AbstractActivity implements EventView {
             public void onTick(long millisUntilFinished) {
                 double secondsforevent = timeStamp;
                 double secondsfornow =  Calendar.getInstance().getTimeInMillis() /1000.0;
-                if (secondsforevent > secondsfornow){
+                if (secondsforevent > (secondsfornow + 60)){
                 //evento en el futuro//
                     double totalMilliseconds =  (timeStamp * 1000.0) - Calendar.getInstance().getTimeInMillis();
                     double totalSeconds = totalMilliseconds / 1000.0;
@@ -259,16 +278,27 @@ public class EventActivity extends AbstractActivity implements EventView {
                     int minutes = (int) (totalSeconds / 60) % 60;
                     int hours = (int) (totalSeconds / (60 * 60)) % 24;
                     int days = (int) (totalSeconds / (60 * 60 * 24));
+                    counterDaysNumber.setVisibility(View.VISIBLE);
+                    counterHoursNumber.setVisibility(View.VISIBLE);
+                    counterMinutesNumber.setVisibility(View.VISIBLE);
+                    counterDaysLabel.setVisibility(View.VISIBLE);
+                    counterHoursLabel.setVisibility(View.VISIBLE);
+                    counterMinutesLabel.setVisibility(View.VISIBLE);
+                    eventFinishLabel.setVisibility(View.INVISIBLE);
 
 
-                    counterDaysNumber.setText(String.valueOf(days));
-                    counterHoursNumber.setText(String.valueOf(hours));
-                    counterMinutesNumber.setText(String.valueOf(minutes));
+                    counterDaysNumber.setText(String.format("%02d", days));
+                    counterHoursNumber.setText(String.format("%02d", hours));
+                    counterMinutesNumber.setText(String.format("%02d", minutes));
                 } else {
                     //evento en el pasado//
-                    counterDaysNumber.setText("00");
-                    counterHoursNumber.setText("00");
-                    counterMinutesNumber.setText("00");
+                    counterDaysNumber.setVisibility(View.INVISIBLE);
+                    counterHoursNumber.setVisibility(View.INVISIBLE);
+                    counterMinutesNumber.setVisibility(View.INVISIBLE);
+                    counterDaysLabel.setVisibility(View.INVISIBLE);
+                    counterHoursLabel.setVisibility(View.INVISIBLE);
+                    counterMinutesLabel.setVisibility(View.INVISIBLE);
+                    eventFinishLabel.setVisibility(View.VISIBLE);
                 }
 
 
@@ -279,4 +309,9 @@ public class EventActivity extends AbstractActivity implements EventView {
             }
         }.start();
     }
+
+
+
+
 }
+

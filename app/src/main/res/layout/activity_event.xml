@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,12 +46,37 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_launcher_background" />
 
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/eventFinishLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="56dp"
+                        android:autoSizeMinTextSize="1sp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="¡Ha comenzado &#10;el evento!"
+                        android:textColor="@color/black"
+                        android:textSize="26sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="32dp"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:visibility="visible">
 
                     <TableRow android:gravity="center">
 
@@ -131,6 +162,7 @@
                             android:textSize="20sp" />
                     </TableRow>
                 </TableLayout>
+
             </FrameLayout>
 
             <RelativeLayout
@@ -459,14 +491,6 @@
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>
-
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                tools:layout_editor_absoluteX="124dp"
-                tools:layout_editor_absoluteY="10dp" />
 
         </LinearLayout>
 
