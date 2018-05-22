@@ -71,6 +71,7 @@
                 android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/black"
+                android:imeOptions="actionDone"
                 android:textColorHint="@color/grey" />
         </LinearLayout>
     </ScrollView>

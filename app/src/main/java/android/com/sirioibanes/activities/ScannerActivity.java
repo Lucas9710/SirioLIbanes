@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -36,7 +38,6 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-
         mPresenter = new ScannerPresenter();
 
         mScannerView = findViewById(R.id.scannerView);
@@ -44,6 +45,8 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        
         findViewById(R.id.buttonScan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -58,9 +61,17 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
             }
         });
 
+        AppCompatEditText editText = (AppCompatEditText) findViewById(R.id.fieldCode);
         if (ContextCompat.checkSelfPermission(ScannerActivity.this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED) {
+            mScannerView.getLayoutParams().height = 20;
+            editText.requestFocus();
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+        } else {
+            final float scale = getResources().getDisplayMetrics().density;
+            int size  = (int) (250 * scale);
+            mScannerView.getLayoutParams().height = size;
+            editText.clearFocus();
         }
     }
 
@@ -68,8 +79,16 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        AppCompatEditText editText = (AppCompatEditText) findViewById(R.id.fieldCode);
+        final float scale = getResources().getDisplayMetrics().density;
+        int size  = (int) (250 * scale);
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             mScannerView.startCamera();
+            mScannerView.getLayoutParams().height = size;
+            editText.clearFocus();
+        } else {
+            mScannerView.getLayoutParams().height = 20;
+            editText.requestFocus();
         }
     }
 

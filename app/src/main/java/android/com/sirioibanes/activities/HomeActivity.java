@@ -1,6 +1,7 @@
 package android.com.sirioibanes.activities;
 
 import android.app.AlertDialog;
+import android.com.sirioibanes.Manifest;
 import android.com.sirioibanes.R;
 import android.com.sirioibanes.adapters.EventsAdapter;
 import android.com.sirioibanes.dtos.Event;
@@ -10,16 +11,21 @@ import android.com.sirioibanes.views.HomeView;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ViewFlipper;
 
 import java.util.List;
+
+import static com.google.gson.internal.$Gson$Types.arrayOf;
 
 public class HomeActivity extends AbstractActivity implements HomeView, EventsAdapter.EventClickListener {
 
@@ -29,6 +35,8 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
     private EventsAdapter mEventsAdapter;
     private ViewFlipper mViewFlipper;
     private HomePresenter mPresenter;
+
+
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -45,7 +53,7 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
         findViewById(R.id.buttonScanner).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                startActivity(new Intent(HomeActivity.this, ScannerActivity.class));
+                scannerButtonPressed();
             }
         });
 
@@ -55,6 +63,29 @@ public class HomeActivity extends AbstractActivity implements HomeView, EventsAd
                 askLogout();
             }
         });
+    }
+
+    private void scannerButtonPressed () {
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.CAMERA}, 100);
+        } else {
+            startActivity(new Intent(HomeActivity.this, ScannerActivity.class));
+
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startActivity(new Intent(HomeActivity.this, ScannerActivity.class));
+        } else {
+            startActivity(new Intent(HomeActivity.this, PermissionsActivity.class));
+        }
     }
 
     private void askLogout() {
