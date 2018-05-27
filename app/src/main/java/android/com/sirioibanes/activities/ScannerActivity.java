@@ -46,7 +46,7 @@ public class ScannerActivity extends AbstractActivity implements ZXingScannerVie
         mScannerView.startCamera();
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        
+
         findViewById(R.id.buttonScan).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
