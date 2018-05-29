@@ -20,6 +20,8 @@ public class SocialNetworksActivity extends AbstractActivity {
 
     private View twitterContainer;
     private static final String EXTRA_LIST = "list";
+    private View facebookContainer;
+    private View instagramContainer;
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final HashMap<String, HashMap> socialNetwork) {
         final Intent intent = new Intent(context, SocialNetworksActivity.class);
@@ -60,6 +62,40 @@ public class SocialNetworksActivity extends AbstractActivity {
                     twitterView.setText(socialNetwork.get("name"));
             }
         }
+        for (int i = 0; i < socialNetworks.keySet().size(); i++) {
+            final String key = (String) socialNetworks.keySet().toArray()[i];
+            final HashMap<String, String> socialNetwork = socialNetworks.get(key);
+
+            if (key.equals("facebook")) {
+                facebookContainer.setVisibility(View.VISIBLE);
+                facebookContainer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        handleLink(socialNetwork.get("link"));
+                    }
+                });
+
+                final TextView twitterView = findViewById(R.id.buttonFacebook);
+                twitterView.setText(socialNetwork.get("name"));
+            }
+        }
+        for (int i = 0; i < socialNetworks.keySet().size(); i++) {
+            final String key = (String) socialNetworks.keySet().toArray()[i];
+            final HashMap<String, String> socialNetwork = socialNetworks.get(key);
+
+            if (key.equals("instagram")) {
+                instagramContainer.setVisibility(View.VISIBLE);
+                instagramContainer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        handleLink(socialNetwork.get("link"));
+                    }
+                });
+
+                final TextView twitterView = findViewById(R.id.buttonInstagram);
+                twitterView.setText(socialNetwork.get("name"));
+            }
+        }
     }
 
     public void hideAllSections() {
@@ -67,11 +103,12 @@ public class SocialNetworksActivity extends AbstractActivity {
         twitterContainer = findViewById(R.id.containerTwitter);
         twitterContainer.setVisibility(View.GONE);
 
-        final View instButton = findViewById(R.id.containerInstagram);
-        instButton.setVisibility(View.GONE);
+        facebookContainer = findViewById(R.id.containerFacebook);
+        facebookContainer.setVisibility(View.GONE);
 
-        final View fbButton = findViewById(R.id.containerFacebook);
-        fbButton.setVisibility(View.GONE);
+        instagramContainer = findViewById(R.id.containerInstagram);
+        twitterContainer.setVisibility(View.GONE);
+
     }
 
     private void handleLink(final String link) {
