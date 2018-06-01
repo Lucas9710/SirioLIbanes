@@ -18,10 +18,14 @@ import java.util.HashMap;
 
 public class SocialNetworksActivity extends AbstractActivity {
 
-    private View twitterContainer;
     private static final String EXTRA_LIST = "list";
+    private View twitterContainer;
     private View facebookContainer;
     private View instagramContainer;
+    private View webpageContainer;
+    private View snapchatContainer;
+    private View youtubeContainer;
+    private HashMap<String, SocialNetwork> socialNetworks;
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final HashMap<String, HashMap> socialNetwork) {
         final Intent intent = new Intent(context, SocialNetworksActivity.class);
@@ -32,83 +36,155 @@ public class SocialNetworksActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
+
+        // ACCIONES DEFAULT PREPARATORIAS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socialnetworks);
-
         if (getIntent().getExtras() == null) {
             throw new AssertionError("This Activity should be launched using it's factory method");
         }
 
-        final HashMap<String, SocialNetwork> socialNetworks = (HashMap<String, SocialNetwork>) getIntent()
-                .getExtras().getSerializable(EXTRA_LIST);
+        //ACCIONES NUESTRAS
 
-        hideAllSections();
+
+        initializeVariables();  //inicializo mis variables para poder usarlas en los metodos siguientes
+        hideAllSections(); // oculto todas las redes sociales para que por default aparezcan apagadas
+        turnOnSocialNetworksWhenNeeded(); //prender las redes sociales que corresponda
+    }
+
+    public void initializeVariables() {
+        // ASIGNO A LAS VARIABLES EL DATO DE LA VISTA
+        twitterContainer = findViewById(R.id.containerTwitter);
+        facebookContainer = findViewById(R.id.containerFacebook);
+        instagramContainer = findViewById(R.id.containerInstagram);
+        snapchatContainer = findViewById(R.id.containerSnapchat);
+        webpageContainer = findViewById(R.id.containerWebpage);
+        youtubeContainer = findViewById(R.id.containerYoutube);
+        socialNetworks = (HashMap<String, SocialNetwork>) getIntent().getExtras().getSerializable(EXTRA_LIST);
+    }
+
+    public void hideAllSections() {
+        // ESTO PONE LOS TRES BOTONES OCULTOS
+        twitterContainer.setVisibility(View.GONE);
+        facebookContainer.setVisibility(View.GONE);
+        instagramContainer.setVisibility(View.GONE);
+        snapchatContainer.setVisibility(View.GONE);
+        webpageContainer.setVisibility(View.GONE);
+        youtubeContainer.setVisibility(View.GONE);
+    }
+
+    public void turnOnSocialNetworksWhenNeeded() {
+
 
         // INTENTAMOS PRENDER EL BOTON DE TWITTER
         for (int i = 0; i < socialNetworks.keySet().size(); i++) {
             final String key = (String) socialNetworks.keySet().toArray()[i];
             final HashMap<String, String> socialNetwork = socialNetworks.get(key);
+            String link = socialNetwork.get("link");
+            String name = socialNetwork.get("name");
 
             if (key.equals("twitter")) {
-                    twitterContainer.setVisibility(View.VISIBLE);
-                    twitterContainer.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            handleLink(socialNetwork.get("link"));
-                        }
-                    });
-
-                    final TextView twitterView = findViewById(R.id.buttonTwitter);
-                    twitterView.setText(socialNetwork.get("name"));
+                turnOnTwitter(link, name);
             }
-        }
-        for (int i = 0; i < socialNetworks.keySet().size(); i++) {
-            final String key = (String) socialNetworks.keySet().toArray()[i];
-            final HashMap<String, String> socialNetwork = socialNetworks.get(key);
 
             if (key.equals("facebook")) {
-                facebookContainer.setVisibility(View.VISIBLE);
-                facebookContainer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        handleLink(socialNetwork.get("link"));
-                    }
-                });
-
-                final TextView twitterView = findViewById(R.id.buttonFacebook);
-                twitterView.setText(socialNetwork.get("name"));
+                turnOnFacebook(link, name);
             }
-        }
-        for (int i = 0; i < socialNetworks.keySet().size(); i++) {
-            final String key = (String) socialNetworks.keySet().toArray()[i];
-            final HashMap<String, String> socialNetwork = socialNetworks.get(key);
 
             if (key.equals("instagram")) {
-                instagramContainer.setVisibility(View.VISIBLE);
-                instagramContainer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        handleLink(socialNetwork.get("link"));
-                    }
-                });
+                turnOnInstagram(link, name);
+            }
 
-                final TextView twitterView = findViewById(R.id.buttonInstagram);
-                twitterView.setText(socialNetwork.get("name"));
+            if (key.equals("webpage")) {
+                turnOnWebpage(link, name);
+            }
+
+            if (key.equals("snapchat")) {
+                turnOnSnapchat(link, name);
+            }
+
+            if (key.equals("youtube")) {
+                turnOnYoutube(link, name);
             }
         }
     }
 
-    public void hideAllSections() {
-        // ESTO PONE LOS TRES BOTONES OCULTOS
-        twitterContainer = findViewById(R.id.containerTwitter);
-        twitterContainer.setVisibility(View.GONE);
+    private void turnOnTwitter(final String link, String name) {
+        twitterContainer.setVisibility(View.VISIBLE);
+        twitterContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLink(link);
+            }
+        });
 
-        facebookContainer = findViewById(R.id.containerFacebook);
-        facebookContainer.setVisibility(View.GONE);
+        final TextView myView = findViewById(R.id.buttonTwitter);
+        myView.setText(name);
+    }
 
-        instagramContainer = findViewById(R.id.containerInstagram);
-        twitterContainer.setVisibility(View.GONE);
+    private void turnOnFacebook(final String link, String name) {
+        facebookContainer.setVisibility(View.VISIBLE);
+        facebookContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLink(link);
+            }
+        });
 
+        final TextView myView = findViewById(R.id.buttonFacebook);
+        myView.setText(name);
+    }
+
+    private void turnOnInstagram(final String link, String name) {
+        instagramContainer.setVisibility(View.VISIBLE);
+        instagramContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLink(link);
+            }
+        });
+
+        final TextView myView = findViewById(R.id.buttonInstagram);
+        myView.setText(name);
+    }
+
+    private void turnOnSnapchat(final String link, String name) {
+        snapchatContainer.setVisibility(View.VISIBLE);
+        snapchatContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLink(link);
+            }
+        });
+
+        final TextView myView = findViewById(R.id.buttonSnapchat);
+        myView.setText(name);
+    }
+
+    private void turnOnWebpage(final String link, String name) {
+        webpageContainer.setVisibility(View.VISIBLE);
+        webpageContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLink(link);
+            }
+        });
+
+        final TextView myView = findViewById(R.id.buttonWebpage);
+        myView.setText(name);
+    }
+
+    private void turnOnYoutube(final String link, String name) {
+        youtubeContainer.setVisibility(View.VISIBLE);
+        youtubeContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLink(link);
+            }
+        });
+
+        final TextView myView = findViewById(R.id.buttonYoutube);
+        myView.setText(name);
     }
 
     private void handleLink(final String link) {
