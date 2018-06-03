@@ -50,7 +50,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:background="@drawable/background_button_border_facebook"
+                android:background="@drawable/background_button_border_webpage"
                 android:orientation="horizontal"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
@@ -78,7 +78,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:background="@drawable/background_button_border_facebook"
+                android:background="@drawable/background_button_border_snapchat"
                 android:orientation="horizontal"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
@@ -107,7 +107,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginStart="32dp"
-                android:background="@drawable/background_button_border_instagram"
+                android:background="@drawable/background_button_border_youtube"
                 android:orientation="horizontal"
                 android:paddingBottom="8dp"
                 android:paddingEnd="16dp"
@@ -118,7 +118,7 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/inconyoutube" />
+                    android:src="@drawable/iconyoutube" />
 
                 <TextView
                     android:id="@+id/buttonYoutube"
@@ -171,7 +171,7 @@
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -198,7 +198,7 @@
                 android:paddingEnd="16dp"
                 android:paddingStart="16dp"
                 android:paddingTop="8dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:layout_width="32dp"
