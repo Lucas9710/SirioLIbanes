@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:872141928763:android:ad4b0b6bfbc5ee05",
         "android_client_info": {
-          "package_name": "android.com.sirioibanes"
+          "package_name": "com.siriolibanes.eventos"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "872141928763-po1nr9vcgpeeo6vnm6sgcq81ctg4ej2l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "android.com.sirioibanes",
+            "package_name": "com.siriolibanes.eventos",
             "certificate_hash": "97150f2562ba7a1bb9e7747c25d2d473628e1a96"
           }
         },

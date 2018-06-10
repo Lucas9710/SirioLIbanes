@@ -14,6 +14,8 @@ import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.accessibility.AccessibilityEventSource;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class EventActivity extends AbstractActivity implements EventView {
     private TextView counterDaysLabel;
     private TextView counterHoursLabel;
     private TextView counterMinutesLabel;
+    private Button qrbutton;
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final Event event) {
         final Intent intent = new Intent(context, EventActivity.class);
@@ -60,6 +63,7 @@ public class EventActivity extends AbstractActivity implements EventView {
         setContentView(R.layout.activity_event);
 
 
+
         eventFinishLabel = (TextView) findViewById(R.id.eventFinishLabel);
         counterDaysNumber = (TextView) findViewById(R.id.counterDaysNumber);
         counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
@@ -67,6 +71,14 @@ public class EventActivity extends AbstractActivity implements EventView {
         counterDaysLabel = (TextView) findViewById(R.id.counterDaysLabel);
         counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
         counterMinutesLabel= (TextView) findViewById(R.id.counterMinutesLabel);
+        qrbutton = (Button) findViewById(R.id.buttonGenerateQR);
+
+        qrbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAccessActivity();
+            }
+        });
 
 
 
@@ -91,6 +103,12 @@ public class EventActivity extends AbstractActivity implements EventView {
 
             mPresenter = new EventPresenter(getIntent().getData().getQueryParameter(PARAM_EVENT));
         }
+    }
+
+    private void showAccessActivity(){
+        Intent myIntent = new Intent(EventActivity.this, AccessActivity.class);
+        EventActivity.this.startActivity(myIntent);
+
     }
 
     private void showRegularLayout() {

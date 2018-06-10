@@ -170,12 +170,12 @@
             <RelativeLayout
                 android:id="@+id/grid_box"
                 android:layout_width="match_parent"
-                android:layout_height="600dp">
+                android:layout_height="400dp">
 
                 <FrameLayout
                     android:id="@+id/center_view"
-                    android:layout_width="300dp"
-                    android:layout_height="600dp"
+                    android:layout_width="280dp"
+                    android:layout_height="540dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:background="@android:color/black">
@@ -185,18 +185,14 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/imageView5"
-                            android:layout_width="0dp"
+                            android:id="@+id/imageView6"
+                            android:layout_width="40dp"
                             android:layout_height="0dp"
-                            android:layout_marginBottom="44dp"
-                            android:layout_marginEnd="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginRight="24dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginStart="24dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             android:elevation="6dp"
                             app:layout_constraintBottom_toBottomOf="@+id/buttonGenerateQR"
-                            app:layout_constraintEnd_toEndOf="@+id/buttonGenerateQR"
                             app:layout_constraintStart_toStartOf="@+id/buttonGenerateQR"
                             app:layout_constraintTop_toTopOf="@+id/buttonGenerateQR"
                             app:srcCompat="@drawable/whiteqr" />
@@ -204,18 +200,16 @@
                         <Button
                             android:id="@+id/buttonGenerateQR"
                             style="@style/AppTheme.Button"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="24dp"
                             android:elevation="0dp"
                             android:textSize="13sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/buttonAssignment" />
 
 
                         <Button
@@ -223,9 +217,8 @@
                             style="@style/AppTheme.Button"
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:layout_marginLeft="8dp"
                             android:layout_marginStart="8dp"
-                            android:layout_marginTop="62dp"
+                            android:layout_marginTop="24dp"
                             android:elevation="1dp"
                             android:textSize="13sp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -251,9 +244,8 @@
                             style="@style/AppTheme.Button"
                             android:layout_width="120dp"
                             android:layout_height="120dp"
-                            android:layout_marginLeft="8dp"
                             android:layout_marginStart="8dp"
-                            android:layout_marginTop="62dp"
+                            android:layout_marginTop="24dp"
                             android:textSize="13sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/buttonMap" />
@@ -282,8 +274,7 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginTop="62dp"
+                            android:layout_marginTop="24dp"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -294,11 +285,10 @@
                             android:layout_width="120dp"
                             android:layout_height="120dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginTop="62dp"
+                            android:layout_marginTop="24dp"
                             android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                            app:layout_constraintTop_toBottomOf="@+id/buttonSocialNetworks" />
 
                         <TextView
                             android:id="@+id/textView7"
@@ -334,7 +324,7 @@
                             app:srcCompat="@drawable/activity_social" />
 
                         <ImageView
-                            android:id="@+id/imageView6"
+                            android:id="@+id/imageView69"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginBottom="44dp"
@@ -382,21 +372,21 @@
 
                         <TextView
                             android:id="@+id/textView15"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
                             android:background="@android:color/black"
                             android:elevation="6dp"
                             android:gravity="center"
-                            android:text="Generar tu&#10;codigo QR"
+                            android:text="Código de acceso al evento"
                             android:textColor="@android:color/white"
                             app:layout_constraintBottom_toBottomOf="@+id/buttonGenerateQR"
                             app:layout_constraintEnd_toEndOf="@+id/buttonGenerateQR"
-                            app:layout_constraintStart_toStartOf="@+id/buttonGenerateQR" />
+                            app:layout_constraintStart_toEndOf="@+id/imageView6"
+                            app:layout_constraintTop_toTopOf="@+id/buttonGenerateQR" />
 
                         <TextView
                             android:id="@+id/textView5"
@@ -414,23 +404,7 @@
                             app:layout_constraintBottom_toBottomOf="@+id/buttonMusic"
                             app:layout_constraintEnd_toEndOf="@+id/buttonMusic"
                             app:layout_constraintStart_toStartOf="@+id/buttonMusic"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="44dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
-                            android:layout_marginStart="8dp"
-                            android:text="Entrada virtual al evento"
-                            android:textColor="@android:color/white"
-                            android:textSize="17sp"
-                            app:layout_constraintBottom_toTopOf="@+id/buttonGenerateQR"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@+id/imageView69" />
 
                     </android.support.constraint.ConstraintLayout>
                 </FrameLayout>
@@ -497,7 +471,7 @@
                         android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:text="Confirmar asistencia"
