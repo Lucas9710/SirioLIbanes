@@ -26,6 +26,8 @@ public class AccessActivity extends AppCompatActivity {
 
         String nickname = AuthenticationManager.getInstance().getUser(this).getNickname();
         qrView = (ImageView) findViewById(R.id.imageView);
+
+
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(nickname, BarcodeFormat.QR_CODE,200,200);
