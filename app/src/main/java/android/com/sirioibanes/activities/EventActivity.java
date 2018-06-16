@@ -286,39 +286,22 @@ public class EventActivity extends AbstractActivity implements EventView {
         new CountDownTimer(100000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                double secondsforevent = timeStamp;
-                double secondsfornow =  Calendar.getInstance().getTimeInMillis() /1000.0;
-                if (secondsforevent > (secondsfornow + 60)){
-                //evento en el futuro//
-                    double totalMilliseconds =  (timeStamp * 1000.0) - Calendar.getInstance().getTimeInMillis();
-                    double totalSeconds = totalMilliseconds / 1000.0;
-                    int seconds = (int) (totalSeconds % 60);
-                    int minutes = (int) (totalSeconds / 60) % 60;
-                    int hours = (int) (totalSeconds / (60 * 60)) % 24;
-                    int days = (int) (totalSeconds / (60 * 60 * 24));
-                    counterDaysNumber.setVisibility(View.VISIBLE);
-                    counterHoursNumber.setVisibility(View.VISIBLE);
-                    counterMinutesNumber.setVisibility(View.VISIBLE);
-                    counterDaysLabel.setVisibility(View.VISIBLE);
-                    counterHoursLabel.setVisibility(View.VISIBLE);
-                    counterMinutesLabel.setVisibility(View.VISIBLE);
-                    eventFinishLabel.setVisibility(View.INVISIBLE);
 
+                double secondsforevent = timeStamp; //segundos entre 1970 y el evento
+                double secondsAfterEvent = timeStamp + 6 * 3600; //segundos entre 1970 y el evento mas 6 horas
+                double secondsfornow =  Calendar.getInstance().getTimeInMillis() /1000.0  + 60; //segundos entre 1970 y ahora
 
-                    counterDaysNumber.setText(String.format("%02d", days));
-                    counterHoursNumber.setText(String.format("%02d", hours));
-                    counterMinutesNumber.setText(String.format("%02d", minutes));
-                } else {
-                    //evento en el pasado//
-                    counterDaysNumber.setVisibility(View.INVISIBLE);
-                    counterHoursNumber.setVisibility(View.INVISIBLE);
-                    counterMinutesNumber.setVisibility(View.INVISIBLE);
-                    counterDaysLabel.setVisibility(View.INVISIBLE);
-                    counterHoursLabel.setVisibility(View.INVISIBLE);
-                    counterMinutesLabel.setVisibility(View.INVISIBLE);
-                    eventFinishLabel.setVisibility(View.VISIBLE);
+                if (secondsfornow < secondsforevent) {
+                    eventoEnElFuturo(timeStamp);
                 }
 
+                if (secondsfornow > secondsforevent && secondsfornow < secondsAfterEvent) {
+                    eventoEnCurso();
+                }
+
+                if (secondsfornow > secondsAfterEvent) {
+                    eventoFinalizado();
+                }
 
             }
 
@@ -328,6 +311,56 @@ public class EventActivity extends AbstractActivity implements EventView {
         }.start();
     }
 
+    void eventoEnElFuturo (Long timeStampParameter) {
+        double totalMilliseconds =  (timeStampParameter * 1000.0) - Calendar.getInstance().getTimeInMillis();
+        double totalSeconds = totalMilliseconds / 1000.0;
+        int seconds = (int) (totalSeconds % 60);
+        int minutes = (int) (totalSeconds / 60) % 60;
+        int hours = (int) (totalSeconds / (60 * 60)) % 24;
+        int days = (int) (totalSeconds / (60 * 60 * 24));
+        counterDaysNumber.setVisibility(View.VISIBLE);
+        counterHoursNumber.setVisibility(View.VISIBLE);
+        counterMinutesNumber.setVisibility(View.VISIBLE);
+        counterDaysLabel.setVisibility(View.VISIBLE);
+        counterHoursLabel.setVisibility(View.VISIBLE);
+        counterMinutesLabel.setVisibility(View.VISIBLE);
+        eventFinishLabel.setVisibility(View.INVISIBLE);
+
+
+        counterDaysNumber.setText(String.format("%02d", days));
+        counterHoursNumber.setText(String.format("%02d", hours));
+        counterMinutesNumber.setText(String.format("%02d", minutes));
+    }
+
+    void eventoEnCurso () {
+
+        //hace invisibles los labels de la fecha
+        counterDaysNumber.setVisibility(View.INVISIBLE);
+        counterHoursNumber.setVisibility(View.INVISIBLE);
+        counterMinutesNumber.setVisibility(View.INVISIBLE);
+        counterDaysLabel.setVisibility(View.INVISIBLE);
+        counterHoursLabel.setVisibility(View.INVISIBLE);
+        counterMinutesLabel.setVisibility(View.INVISIBLE);
+
+        //hacer visible el label centrado
+        eventFinishLabel.setVisibility(View.VISIBLE);
+        eventFinishLabel.setText("¡Ha comenzado el evento!");
+    }
+
+    void eventoFinalizado () {
+
+        //hace invisibles los labels de la fecha
+        counterDaysNumber.setVisibility(View.INVISIBLE);
+        counterHoursNumber.setVisibility(View.INVISIBLE);
+        counterMinutesNumber.setVisibility(View.INVISIBLE);
+        counterDaysLabel.setVisibility(View.INVISIBLE);
+        counterHoursLabel.setVisibility(View.INVISIBLE);
+        counterMinutesLabel.setVisibility(View.INVISIBLE);
+
+        //hacer visible el label centrado
+        eventFinishLabel.setVisibility(View.VISIBLE);
+        eventFinishLabel.setText("Gracias por venir");
+    }
 
 
 
