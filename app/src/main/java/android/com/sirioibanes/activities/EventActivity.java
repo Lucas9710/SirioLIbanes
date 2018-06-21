@@ -65,12 +65,15 @@ public class EventActivity extends AbstractActivity implements EventView {
 
 
         eventFinishLabel = (TextView) findViewById(R.id.eventFinishLabel);
-        counterDaysNumber = (TextView) findViewById(R.id.counterDaysNumber);
-        counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
-        counterMinutesLabel = (TextView) findViewById(R.id.counterMinutesLabel);
+
         counterDaysLabel = (TextView) findViewById(R.id.counterDaysLabel);
-        counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
         counterMinutesLabel= (TextView) findViewById(R.id.counterMinutesLabel);
+        counterHoursLabel = (TextView) findViewById(R.id.counterHoursLabel);
+
+        counterMinutesNumber = (TextView) findViewById(R.id.counterMinutesNumber);
+        counterHoursNumber = (TextView) findViewById(R.id.counterHoursNumber);
+        counterDaysNumber = (TextView) findViewById(R.id.counterDaysNumber);
+
         qrbutton = (Button) findViewById(R.id.buttonGenerateQR);
 
         qrbutton.setOnClickListener(new View.OnClickListener() {
@@ -279,9 +282,6 @@ public class EventActivity extends AbstractActivity implements EventView {
     }
 
     private void initCountDown(final Long timeStamp) {
-        final TextView counterDaysNumber = findViewById(R.id.counterDaysNumber);
-        final TextView counterHoursNumber = findViewById(R.id.counterHoursNumber);
-        final TextView counterMinutesNumber = findViewById(R.id.counterMinutesNumber);
 
         new CountDownTimer(100000, 1000) {
 
@@ -314,10 +314,13 @@ public class EventActivity extends AbstractActivity implements EventView {
     void eventoEnElFuturo (Long timeStampParameter) {
         double totalMilliseconds =  (timeStampParameter * 1000.0) - Calendar.getInstance().getTimeInMillis();
         double totalSeconds = totalMilliseconds / 1000.0;
+
+
         int seconds = (int) (totalSeconds % 60);
         int minutes = (int) (totalSeconds / 60) % 60;
         int hours = (int) (totalSeconds / (60 * 60)) % 24;
         int days = (int) (totalSeconds / (60 * 60 * 24));
+
         counterDaysNumber.setVisibility(View.VISIBLE);
         counterHoursNumber.setVisibility(View.VISIBLE);
         counterMinutesNumber.setVisibility(View.VISIBLE);
