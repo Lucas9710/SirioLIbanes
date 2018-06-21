@@ -190,7 +190,7 @@ public class EventActivity extends AbstractActivity implements EventView {
         callbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callPhone();
+                abrirPaginaWebDeWhatsapp();
             }
         });
 
@@ -275,10 +275,22 @@ public class EventActivity extends AbstractActivity implements EventView {
         });
     }
 
-    private void callPhone () {
+    private void abrirPaginaWebDeWhatsapp () {
+        //este metodo tiene que abrir la pagina web de whatsapp con el numero cargado
+
         String phone = number.getText().toString();
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-        startActivity(intent);
+        String whatsapplink = "https://api.whatsapp.com/send?phone=";
+        String fulllink = whatsapplink + phone;
+
+
+
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fulllink));
+        startActivity(browserIntent);
+
+
+
+
+
     }
 
     private void initCountDown(final Long timeStamp) {
@@ -362,7 +374,7 @@ public class EventActivity extends AbstractActivity implements EventView {
 
         //hacer visible el label centrado
         eventFinishLabel.setVisibility(View.VISIBLE);
-        eventFinishLabel.setText("Gracias por venir");
+        eventFinishLabel.setText("¡Gracias por venir!");
     }
 
 

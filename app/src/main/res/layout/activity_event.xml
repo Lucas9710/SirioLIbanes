@@ -14,7 +14,7 @@
 
         <ProgressBar
             android:id="@+id/progressBar2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             tools:layout_editor_absoluteX="168dp"
@@ -498,7 +498,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:background="@android:color/black"
                         android:text="Contacto"
                         android:textColor="@android:color/white"
@@ -536,7 +536,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
-                        app:srcCompat="@drawable/callicon" />
+                        app:srcCompat="@drawable/iconwpp" />
 
                 </android.support.constraint.ConstraintLayout>
             </FrameLayout>

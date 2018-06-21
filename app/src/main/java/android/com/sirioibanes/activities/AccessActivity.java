@@ -24,7 +24,7 @@ public class AccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_access);
 
-        String nickname = AuthenticationManager.getInstance().getUser(this).getNickname();
+        String nickname = AuthenticationManager.getInstance().getUser(this).getEmail();
         qrView = (ImageView) findViewById(R.id.imageView);
 
 
