@@ -47,7 +47,7 @@ public class AssignmentPresenter {
                         final List<HashMap<String, String>> mapList = new ArrayList<>(list);
 
                         for (HashMap<String, String> map : list) {
-                            if (map.get("nickname").equals(AuthenticationManager.getInstance().getUser(mView.getContext()).getNickname())) {
+                            if (map.get("mail").equals(AuthenticationManager.getInstance().getUser(mView.getContext()).getEmail())) {
                                 mapList.remove(map);
                                 mView.showAssignments(postSnapshot.getKey(), mapList);
                                 return;
