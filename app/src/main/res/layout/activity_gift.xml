@@ -48,7 +48,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginStart="32dp"
-                    android:background="@drawable/background_button_border_webpage"
+                    android:background="@drawable/background_button_regalo_verde"
                     android:orientation="horizontal"
                     android:paddingBottom="8dp"
                     android:paddingEnd="16dp"
@@ -66,7 +66,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/remera" />
+                        android:src="@drawable/regalo_verde" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -76,7 +76,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginStart="32dp"
-                    android:background="@drawable/background_button_border_snapchat"
+                    android:background="@drawable/background_button_red2"
                     android:orientation="horizontal"
                     android:paddingBottom="8dp"
                     android:paddingEnd="16dp"
@@ -88,7 +88,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/perro" />
+                        android:src="@drawable/regalo_rojo" />
 
                     <TextView
                         android:id="@+id/button"
@@ -105,7 +105,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginStart="32dp"
-                    android:background="@drawable/background_button_border_facebook"
+                    android:background="@drawable/background_button_border_regalo_azul"
                     android:orientation="horizontal"
                     android:paddingBottom="8dp"
                     android:paddingEnd="16dp"
@@ -116,7 +116,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/tele" />
+                        android:src="@drawable/regalo_azul" />
 
                     <TextView
                         android:id="@+id/buttonFacebook"
@@ -134,18 +134,18 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginStart="32dp"
-                    android:background="@drawable/background_button_border_instagram"
+                    android:background="@drawable/background_button_border_regalo_gris"
                     android:orientation="horizontal"
                     android:paddingBottom="8dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:visibility="invisible">
+                    android:visibility="visible">
 
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@mipmap/instagram" />
+                        android:src="@drawable/regalo_gris" />
 
                     <TextView
                         android:id="@+id/buttonInstagram"
@@ -161,18 +161,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginStart="32dp"
-                    android:background="@drawable/background_button_border_twitter"
+                    android:background="@drawable/background_button_border_regalo_purpura"
                     android:orientation="horizontal"
                     android:paddingBottom="8dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
-                    android:visibility="invisible">
+                    android:visibility="visible">
 
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:src="@mipmap/twitter" />
+                        android:src="@drawable/regalo_purpura" />
 
                     <TextView
                         android:id="@+id/buttonTwitter"
@@ -180,6 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         tools:text="Twitter" />
+
                 </FrameLayout>
             </LinearLayout>
         </RelativeLayout>

@@ -48,6 +48,7 @@ public class EventActivity extends AbstractActivity implements EventView {
     private TextView counterHoursLabel;
     private TextView counterMinutesLabel;
     private Button qrbutton;
+    private Button buttonRegalo;
 
     public static Intent getIntent(@NonNull final Context context, @NonNull final Event event) {
         final Intent intent = new Intent(context, EventActivity.class);
@@ -83,6 +84,7 @@ public class EventActivity extends AbstractActivity implements EventView {
             }
         });
 
+        addActionToGiftButton();
 
 
         View itemView;
@@ -107,6 +109,30 @@ public class EventActivity extends AbstractActivity implements EventView {
             mPresenter = new EventPresenter(getIntent().getData().getQueryParameter(PARAM_EVENT));
         }
     }
+
+    private void addActionToGiftButton () {
+
+        buttonRegalo = (Button) findViewById(R.id.buttonRegalo) ;
+
+        buttonRegalo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNextScreen();
+            }
+        });
+
+
+        //TODO: aca hay que agregar la accion del boton
+    }
+
+    //metodo para para tocar el boton regalos
+    private void goToNextScreen () {
+        Intent myIntent = new Intent(EventActivity.this, GiftActivity.class);
+        EventActivity.this.startActivity(myIntent);
+
+
+    }
+
 
     private void showAccessActivity(){
         Intent myIntent = new Intent(EventActivity.this, AccessActivity.class);
