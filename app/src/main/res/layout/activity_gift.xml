@@ -98,6 +98,8 @@
                         tools:text="¡Regálale una mascota!" />
                 </FrameLayout>
 
+
+                
                 <FrameLayout
                     android:id="@+id/containerAzul"
                     android:layout_width="match_parent"
