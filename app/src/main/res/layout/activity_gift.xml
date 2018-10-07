@@ -97,8 +97,6 @@
                         android:layout_gravity="center"
                         tools:text="¡Regálale una mascota!" />
                 </FrameLayout>
-
-
                 
                 <FrameLayout
                     android:id="@+id/containerAzul"
