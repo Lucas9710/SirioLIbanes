@@ -22,9 +22,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="473dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="#111111"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -42,7 +42,7 @@
                     android:textSize="16sp" />
 
                 <FrameLayout
-                    android:id="@+id/containerRopa"
+                    android:id="@+id/containerVerde"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -70,7 +70,7 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/containerSnapchat"
+                    android:id="@+id/containerRojo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -98,8 +98,10 @@
                         tools:text="¡Regálale una mascota!" />
                 </FrameLayout>
 
+
+                
                 <FrameLayout
-                    android:id="@+id/containerFacebook"
+                    android:id="@+id/containerAzul"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -156,9 +158,10 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/containerTwitter"
+                    android:id="@+id/containerGris"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginStart="32dp"
                     android:background="@drawable/background_button_border_regalo_purpura"
@@ -176,6 +179,34 @@
 
                     <TextView
                         android:id="@+id/buttonTwitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        tools:text="Twitter" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/containerVioleta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="32dp"
+                    android:background="@drawable/background_button_border_regalo_violeta"
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/regalo_violeta" />
+
+                    <TextView
+                        android:id="@+id/buttonOtro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
