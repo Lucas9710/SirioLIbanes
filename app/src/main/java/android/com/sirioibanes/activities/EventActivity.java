@@ -127,8 +127,9 @@ public class EventActivity extends AbstractActivity implements EventView {
 
     //metodo para para tocar el boton regalos
     private void goToNextScreen () {
-        Intent myIntent = new Intent(EventActivity.this, GiftActivity.class);
-        EventActivity.this.startActivity(myIntent);
+        final Intent intent = GiftActivity.getIntent(EventActivity.this,
+                mEvent.gifts);
+        startActivity(intent);
 
 
     }

@@ -16,6 +16,7 @@ public class Event implements Serializable {
     public final String telefono;
     public final Long timestamp;
     public final HashMap<String, HashMap> redes;
+    public final HashMap<String, HashMap> gifts;
     public final String key;
     public final HashMap<String, String> invitados;
 
@@ -29,6 +30,7 @@ public class Event implements Serializable {
         this.telefono = (String) eventObject.get("telefono");
         this.timestamp = (Long) eventObject.get("timestamp");
         this.redes = (HashMap<String, HashMap>) eventObject.get("redes");
+        this.gifts = (HashMap<String, HashMap>) eventObject.get("gifts");
         this.invitados = (HashMap<String, String>) eventObject.get("invitados");
     }
 }
