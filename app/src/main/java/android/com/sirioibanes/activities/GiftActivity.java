@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -48,9 +49,12 @@ public class GiftActivity extends AbstractActivity {
             //ACCIONES NUESTRAS
 
 
+            Log.v("LucasLogs", "Estoy por inicializar las variables");
             initializeVariables();  //inicializo mis variables para poder usarlas en los metodos siguientes
+            Log.v("LucasLogs", "Estoy por ocultar todas las secciones");
             hideAllSections(); // oculto todas las redes sociales para que por default aparezcan apagadas
-            turnOnSocialNetworksWhenNeeded(); //prender las redes sociales que corresponda
+            Log.v("LucasLogs", "Estoy por prender una a a una las redes q correspondan");
+            turnOnGiftsWhenNeeded(); //prender las redes sociales que corresponda
         }
 
         public void initializeVariables() {
@@ -74,7 +78,7 @@ public class GiftActivity extends AbstractActivity {
             purpleContainer.setVisibility(View.GONE);
         }
 
-        public void turnOnSocialNetworksWhenNeeded() {
+        public void turnOnGiftsWhenNeeded() {
 
 
             // INTENTAMOS PRENDER EL BOTON DE TWITTER
@@ -119,8 +123,11 @@ public class GiftActivity extends AbstractActivity {
                 }
             });
 
-            final TextView myView = findViewById(R.id.title_red);
-            myView.setText(name);
+            final TextView titleLabel = findViewById(R.id.title_red);
+            titleLabel.setText(name);
+
+//            final TextView amountLabel = findViewById(R.id.amount_red);
+//            amountLabel.setText(amount);
         }
 
         private void turnOnBlueBox(final String link, String name) {
