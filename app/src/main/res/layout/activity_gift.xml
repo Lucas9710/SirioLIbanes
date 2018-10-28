@@ -68,27 +68,27 @@
 
                     <TextView
                         android:id="@+id/title_purple"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="20dp"
-                        android:textStyle="bold"
-                        android:textSize="15sp"
-                        android:gravity="center"
-
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="42dp"
+
+                        android:gravity="center"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
                         tools:text="Titulo" />
 
                     <TextView
                         android:id="@+id/amount_purple"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
-                        android:textStyle="bold"
                         android:layout_marginBottom="8dp"
-                        android:gravity="center"
-                        android:textSize="25sp"
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
+                        android:gravity="center"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
                         tools:text="MONTO" />
 
                 </FrameLayout>
@@ -118,7 +118,7 @@
 
                     <TextView
                         android:id="@+id/title_green"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
@@ -131,7 +131,7 @@
 
                     <TextView
                         android:id="@+id/amount_green"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="54dp"
@@ -167,7 +167,7 @@
 
                     <TextView
                         android:id="@+id/title_red"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
@@ -180,7 +180,7 @@
 
                     <TextView
                         android:id="@+id/amount_red"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="54dp"
@@ -215,7 +215,7 @@
 
                     <TextView
                         android:id="@+id/title_blue"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
@@ -227,8 +227,8 @@
                         tools:text="Titulo" />
 
                     <TextView
-                        android:id="@+id/amount_green"
-                        android:layout_width="220dp"
+                        android:id="@+id/amount_blue"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="54dp"
@@ -264,7 +264,7 @@
 
                     <TextView
                         android:id="@+id/title_gray"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
@@ -276,8 +276,8 @@
                         tools:text="Titulo" />
 
                     <TextView
-                        android:id="@+id/amount_green"
-                        android:layout_width="220dp"
+                        android:id="@+id/amount_gray"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="54dp"
@@ -313,7 +313,7 @@
 
                     <TextView
                         android:id="@+id/title_pink"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="20dp"
                         android:layout_marginLeft="54dp"
                         android:layout_marginRight="32dp"
@@ -325,8 +325,8 @@
                         tools:text="Titulo" />
 
                     <TextView
-                        android:id="@+id/amount_green"
-                        android:layout_width="220dp"
+                        android:id="@+id/amount_pink"
+                        android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="54dp"

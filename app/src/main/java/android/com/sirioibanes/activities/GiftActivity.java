@@ -87,34 +87,35 @@ public class GiftActivity extends AbstractActivity {
                 final HashMap<String, String> gift = gifts.get(key);
                 String link = gift.get("link");
                 String name = gift.get("name");
+                String amount = gift.get("amount");
 
                 if (key.equals("red")) {
-                    turnOnRedBox(link, name);
+                    turnOnRedBox(link, name, amount);
                 }
 
                 if (key.equals("blue")) {
-                    turnOnBlueBox(link, name);
+                    turnOnBlueBox(link, name, amount);
                 }
 
                 if (key.equals("pink")) {
-                    turnOnPinkBox(link, name);
+                    turnOnPinkBox(link, name, amount);
                 }
 
                 if (key.equals("gray")) {
-                    turnOnGrayBox(link, name);
+                    turnOnGrayBox(link, name, amount);
                 }
 
                 if (key.equals("green")) {
-                    turnOnGreenBox(link, name);
+                    turnOnGreenBox(link, name, amount);
                 }
 
                 if (key.equals("purple")) {
-                    turnOnPurpleBox(link, name);
+                    turnOnPurpleBox(link, name, amount);
                 }
             }
         }
 
-        private void turnOnRedBox(final String link, String name) {
+        private void turnOnRedBox(final String link, String name, String amount) {
             redContainer.setVisibility(View.VISIBLE);
             redContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -126,11 +127,11 @@ public class GiftActivity extends AbstractActivity {
             final TextView titleLabel = findViewById(R.id.title_red);
             titleLabel.setText(name);
 
-//            final TextView amountLabel = findViewById(R.id.amount_red);
-//            amountLabel.setText(amount);
+           final TextView amountLabel = findViewById(R.id.amount_red);
+           amountLabel.setText(amount);
         }
 
-        private void turnOnBlueBox(final String link, String name) {
+        private void turnOnBlueBox(final String link, String name, String amount) {
             blueContainer.setVisibility(View.VISIBLE);
             blueContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -139,11 +140,13 @@ public class GiftActivity extends AbstractActivity {
                 }
             });
 
-            final TextView myView = findViewById(R.id.title_blue);
-            myView.setText(name);
+            final TextView titleLabel = findViewById(R.id.title_blue);
+            titleLabel.setText(name);
+            final TextView amountLabel = findViewById(R.id.amount_blue);
+            amountLabel.setText(amount);
         }
 
-        private void turnOnPinkBox(final String link, String name) {
+        private void turnOnPinkBox(final String link, String name, String amount) {
             pinkContainer.setVisibility(View.VISIBLE);
             pinkContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -152,11 +155,13 @@ public class GiftActivity extends AbstractActivity {
                 }
             });
 
-            final TextView myView = findViewById(R.id.title_pink);
-            myView.setText(name);
+            final TextView titleLabel = findViewById(R.id.title_pink);
+            titleLabel.setText(name);
+            final TextView amountLabel = findViewById(R.id.amount_pink);
+            amountLabel.setText(amount);
         }
 
-        private void turnOnGrayBox(final String link, String name) {
+        private void turnOnGrayBox(final String link, String name, String amount) {
             grayContainer.setVisibility(View.VISIBLE);
             greenContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -165,11 +170,14 @@ public class GiftActivity extends AbstractActivity {
                 }
             });
 
-            final TextView myView = findViewById(R.id.title_gray);
-            myView.setText(name);
+            final TextView titleLabel = findViewById(R.id.title_gray);
+            titleLabel.setText(name);
+            final TextView amountLabel = findViewById(R.id.amount_gray);
+            amountLabel.setText(amount);
+
         }
 
-        private void turnOnGreenBox(final String link, String name) {
+        private void turnOnGreenBox(final String link, String name, String amount) {
             greenContainer.setVisibility(View.VISIBLE);
             greenContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -178,11 +186,13 @@ public class GiftActivity extends AbstractActivity {
                 }
             });
 
-            final TextView myView = findViewById(R.id.title_green);
-            myView.setText(name);
+            final TextView titleLabel = findViewById(R.id.title_green);
+            titleLabel.setText(name);
+            final TextView amountLabel = findViewById(R.id.amount_green);
+            amountLabel.setText(amount);
         }
 
-        private void turnOnPurpleBox(final String link, String name) {
+        private void turnOnPurpleBox(final String link, String name, String amount) {
             purpleContainer.setVisibility(View.VISIBLE);
             purpleContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,8 +201,10 @@ public class GiftActivity extends AbstractActivity {
                 }
             });
 
-            final TextView myView = findViewById(R.id.title_purple);
-            myView.setText(name);
+            final TextView titleLabel = findViewById(R.id.title_purple);
+            titleLabel.setText(name);
+            final TextView amountLabel = findViewById(R.id.amount_purple);
+            amountLabel.setText(amount);
         }
 
         private void handleLink(final String link) {
