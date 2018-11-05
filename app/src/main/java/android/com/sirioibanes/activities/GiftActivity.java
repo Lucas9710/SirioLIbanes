@@ -7,6 +7,9 @@ import android.com.sirioibanes.utils.FeedbackUtils;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +17,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 public class GiftActivity extends AbstractActivity {
@@ -88,13 +97,14 @@ public class GiftActivity extends AbstractActivity {
                 String link = gift.get("link");
                 String name = gift.get("name");
                 String amount = gift.get("amount");
+                String imageUrl = gift.get("image_url");
 
                 if (key.equals("red")) {
                     turnOnRedBox(link, name, amount);
                 }
 
                 if (key.equals("blue")) {
-                    turnOnBlueBox(link, name, amount);
+                    turnOnBlueBox(link, name, amount, imageUrl);
                 }
 
                 if (key.equals("pink")) {
@@ -129,9 +139,10 @@ public class GiftActivity extends AbstractActivity {
 
            final TextView amountLabel = findViewById(R.id.amount_red);
            amountLabel.setText(amount);
+
         }
 
-        private void turnOnBlueBox(final String link, String name, String amount) {
+        private void turnOnBlueBox(final String link, String name, String amount, String imageUrl) {
             blueContainer.setVisibility(View.VISIBLE);
             blueContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -144,6 +155,11 @@ public class GiftActivity extends AbstractActivity {
             titleLabel.setText(name);
             final TextView amountLabel = findViewById(R.id.amount_blue);
             amountLabel.setText(amount);
+
+            final ImageView imageView = findViewById(R.id.image_view_blue);
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .resize(200,200).noFade().into(imageView);
         }
 
         private void turnOnPinkBox(final String link, String name, String amount) {

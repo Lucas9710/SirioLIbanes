@@ -15,4 +15,9 @@ public class Gift extends HashMap {
     public String getLink() {
         return (String) ((HashMap) get("value")).get("link");
     }
+
+    public String getImageUrl () {
+        return (String) ((HashMap) get("value")).get("image_url");
+    }
 }
+
