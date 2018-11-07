@@ -100,7 +100,8 @@ public class GiftActivity extends AbstractActivity {
                 String imageUrl = gift.get("image_url");
 
                 if (key.equals("red")) {
-                    turnOnRedBox(link, name, amount);
+                    turnOnRedBox(link, name, amount, imageUrl);
+
                 }
 
                 if (key.equals("blue")) {
@@ -108,24 +109,24 @@ public class GiftActivity extends AbstractActivity {
                 }
 
                 if (key.equals("pink")) {
-                    turnOnPinkBox(link, name, amount);
+                    turnOnPinkBox(link, name, amount, imageUrl);
                 }
 
                 if (key.equals("gray")) {
-                    turnOnGrayBox(link, name, amount);
+                    turnOnGrayBox(link, name, amount, imageUrl);
                 }
 
                 if (key.equals("green")) {
-                    turnOnGreenBox(link, name, amount);
+                    turnOnGreenBox(link, name, amount, imageUrl);
                 }
 
                 if (key.equals("purple")) {
-                    turnOnPurpleBox(link, name, amount);
+                    turnOnPurpleBox(link, name, amount, imageUrl);
                 }
             }
         }
 
-        private void turnOnRedBox(final String link, String name, String amount) {
+        private void turnOnRedBox(final String link, String name, String amount, String imageUrl) {
             redContainer.setVisibility(View.VISIBLE);
             redContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,6 +141,13 @@ public class GiftActivity extends AbstractActivity {
            final TextView amountLabel = findViewById(R.id.amount_red);
            amountLabel.setText(amount);
 
+           if (imageUrl != null) {
+
+            final ImageView imageView = findViewById(R.id.image_red);
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .resize(200,200).noFade().into(imageView);
+           }
         }
 
         private void turnOnBlueBox(final String link, String name, String amount, String imageUrl) {
@@ -156,13 +164,15 @@ public class GiftActivity extends AbstractActivity {
             final TextView amountLabel = findViewById(R.id.amount_blue);
             amountLabel.setText(amount);
 
+            if (imageUrl != null) {
+
             final ImageView imageView = findViewById(R.id.image_view_blue);
             Picasso.with(this)
                     .load(imageUrl)
-                    .resize(200,200).noFade().into(imageView);
+                    .resize(200,200).noFade().into(imageView); }
         }
 
-        private void turnOnPinkBox(final String link, String name, String amount) {
+        private void turnOnPinkBox(final String link, String name, String amount, String imageUrl) {
             pinkContainer.setVisibility(View.VISIBLE);
             pinkContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -175,9 +185,16 @@ public class GiftActivity extends AbstractActivity {
             titleLabel.setText(name);
             final TextView amountLabel = findViewById(R.id.amount_pink);
             amountLabel.setText(amount);
+
+            if (imageUrl != null) {
+
+            final ImageView imageView = findViewById(R.id.image_pink);
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .resize(200,200).noFade().into(imageView);  }
         }
 
-        private void turnOnGrayBox(final String link, String name, String amount) {
+        private void turnOnGrayBox(final String link, String name, String amount, String imageUrl) {
             grayContainer.setVisibility(View.VISIBLE);
             greenContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,9 +208,15 @@ public class GiftActivity extends AbstractActivity {
             final TextView amountLabel = findViewById(R.id.amount_gray);
             amountLabel.setText(amount);
 
+            if (imageUrl != null) {
+
+            final ImageView imageView = findViewById(R.id.image_gray);
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .resize(200,200).noFade().into(imageView); }
         }
 
-        private void turnOnGreenBox(final String link, String name, String amount) {
+        private void turnOnGreenBox(final String link, String name, String amount, String imageUrl) {
             greenContainer.setVisibility(View.VISIBLE);
             greenContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -206,9 +229,16 @@ public class GiftActivity extends AbstractActivity {
             titleLabel.setText(name);
             final TextView amountLabel = findViewById(R.id.amount_green);
             amountLabel.setText(amount);
+
+            if (imageUrl != null) {
+
+            final ImageView imageView = findViewById(R.id.image_green);
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .resize(200,200).noFade().into(imageView); }
         }
 
-        private void turnOnPurpleBox(final String link, String name, String amount) {
+        private void turnOnPurpleBox(final String link, String name, String amount, String imageUrl) {
             purpleContainer.setVisibility(View.VISIBLE);
             purpleContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -221,6 +251,13 @@ public class GiftActivity extends AbstractActivity {
             titleLabel.setText(name);
             final TextView amountLabel = findViewById(R.id.amount_purple);
             amountLabel.setText(amount);
+
+            if (imageUrl != null) {
+
+            final ImageView imageView = findViewById(R.id.image_purple);
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .resize(200,200).noFade().into(imageView); }
         }
 
         private void handleLink(final String link) {
